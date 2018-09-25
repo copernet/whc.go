@@ -7,6 +7,7 @@ package main
 
 import (
 	"log"
+	"time"
 
 	"github.com/copernet/whc.go/rpcclient"
 )
@@ -30,8 +31,16 @@ func main() {
 
 	// Get the current wormhole relative information.
 	info, err := client.WhcGetInfo()
+	client.WhcGetInfo()
 	if err != nil {
 		log.Fatal(err)
 	}
 	log.Printf("Block count: %d", info.Block)
+
+	r := client.WhcGetCrowdSaleAsync(34, nil)
+	// do some time-consuming code
+	time.Sleep(3 * time.Second)
+
+	result, err := r.Receive()
+
 }
