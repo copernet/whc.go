@@ -5,7 +5,7 @@ sdk.go provides the full wormhole and bitcoin cash relative operation and query 
 
 #### Usages:
 
-Please refer to usage examples: [examples/whcinfo.go](https://github.com/copernet/whc.go/examples/whcinfo.go)
+Please refer to usage examples: [examples/whcinfo.go](https://github.com/copernet/whc.go/blob/master/examples/whcinfo.go)
 
 #### Support API:
 
