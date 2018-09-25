@@ -94,14 +94,14 @@ Now the following apis are fully supported by this sdk and will be synced with t
 | 11 |WhcGetInfo| Returns various state information of the client and protocol. |
 | 12 |WhcGetPayload| Get the payload for an Wormhole transaction. |
 | 13 |WhcGetProperty| Returns details for about the tokens or smart property to lookup. |
-| 14 |WhcGetSeedBlocks| Returns a list of blocks containing Omni transactions for use in seed block filtering. |
+| 14 |WhcGetSeedBlocks| Returns a list of blocks containing wormhole transactions for use in seed block filtering. |
 | 15 |WhcGetSto| Get information and recipients of a send-to-owners transaction. |
-| 16 |WhcGetTransaction| Get detailed information about an Omni transaction. |
+| 16 |WhcGetTransaction| Get detailed information about an wormhole transaction. |
 | 17 |WhcListBlockTransactions| Lists all Wormhole transactions in a block. |
 | 18 |WhcListPendingTransactions| Returns a list of unconfirmed Wormhole transactions, pending in the memory pool. |
 | 19 |WhcListProperties| Lists all tokens or smart properties. |
 | 20 |WhcListTransactions| List wallet transactions, optionally filtered by an address and block boundaries. |
-| 21 |WhcBurnBCHGetWhc| Creates the payload to burn bch to get whc. |
+| 21 |WhcCreatePayloadBurnBCH| Creates the payload to burn bch to get whc. |
 | 22 |WhcCreatePayloadChangeIssuer| Creats the payload to change the issuer on record of the given tokens. |
 | 23 |WhcCreatePayloadCloseCrowdSale| Creates the payload to manually close a crowdsale. |
 | 24 |WhcCreatePayloadGrant| Creates the payload to issue or grant new units of managed tokens. |
@@ -117,7 +117,7 @@ Now the following apis are fully supported by this sdk and will be synced with t
 | 34 |WhcCreateRawTxInput| Adds a transaction input to the transaction. |
 | 35 |WhcCreateRawTxOpReturn| Adds a payload with class C (op-return) encoding to the transaction. |
 | 36 |WhcCreateRawTxReference| Adds a reference output to the transaction. |
-| 37 |WhcDecodeTransaction| Decodes an Omni transaction. |
+| 37 |WhcDecodeTransaction| Decodes an wormhole transaction. |
 | 38 |WhcBurnBCHGetWhc| Burn BCH to get WHC |
 | 39 |WhcPartiCrowdSale| Create and broadcast a participate crowsale transaction. |
 | 40 |WhcSend| Create and broadcast a simple send transaction. |
