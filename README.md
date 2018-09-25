@@ -1,7 +1,7 @@
-sdk.go
+whc.go
 ---
 
-sdk.go provides the full wormhole and bitcoin cash relative operation and query services via RPC protocol. Now wormhole client with the latest version and Go environment are required before using this wormhole sdk.
+whc.go provides the full wormhole and bitcoin cash relative operation and query services via RPC protocol. Now wormhole client with the latest version and Go environment are required before using this wormhole sdk.
 
 #### Requirements:
 
