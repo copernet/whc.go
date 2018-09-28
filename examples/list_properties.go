@@ -28,10 +28,11 @@ func main() {
 	}
 	defer client.Shutdown()
 
-	// Get the current wormhole relative information.
-	info, err := client.WhcGetInfo()
+	// Fetch all wormhole properties.
+	list, err := client.WhcListProperties()
 	if err != nil {
 		log.Fatal(err)
 	}
-	log.Printf("Block count: %d", info.Block)
+
+	log.Println(list)
 }
