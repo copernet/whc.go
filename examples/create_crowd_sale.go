@@ -28,10 +28,26 @@ func main() {
 	}
 	defer client.Shutdown()
 
-	// Get the current wormhole relative information.
-	info, err := client.WhcGetInfo()
-	if err != nil {
-		log.Fatal(err)
-	}
-	log.Printf("Block count: %d", info.Block)
+	// necessary field
+	addressFrom := "bchtest:qqg2fwfzd4xeywf8h2zajqy77357gk0v7yvsvhd4xu"
+	ecosystem := int64(1) // must be 1
+	precision := int64(8)
+	previousID := int64(0) // must be 0
+	category := "Blockchain research"
+	subCatetory := "Bitcoin cash"
+	name := "wormhole"
+	url := "https://www.wormhole.cash"
+	data := "working for the future"
+	desiredID := int64(1) // must be 1
+	tokensPerUnit := "100"
+	deadline := int64(1582772366)
+	earlyBonus := int64(2)
+	issuerPercentage := int64(0) // must be 0
+	amount := "10000000.987"
+
+	// Create a crowdsalle transaction
+	txHash, err := client.WhcSendIssuanceCrowdSale(addressFrom, ecosystem, precision, previousID, category,
+		subCatetory, name, url, data, desiredID, tokensPerUnit, deadline, earlyBonus, issuerPercentage, amount)
+
+	log.Println(txHash)
 }
