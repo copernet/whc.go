@@ -1,37 +1,44 @@
 whc.go
 ---
 
-whc.go provides the full wormhole and bitcoin cash relative operation and query services via RPC protocol. Now wormhole client with the latest version and Go environment are required before using this wormhole sdk.
+whc.go provides the full wormhole and bitcoin cash relative SDK written in GO.
 
 #### Requirements:
 
-- Now, you need a wormhole client with the latest version. Install `wormhole` according to the installation instructions here: [https://github.com/copernet/wormhole/tree/master/doc](https://github.com/copernet/wormhole/tree/master/doc). There are many different document files for different operation system. Example: ubuntu users need refer to [https://github.com/copernet/wormhole/blob/master/doc/build-unix.md](https://github.com/copernet/wormhole/blob/master/doc/build-unix.md)
+- Install `wormhole ` ([Earth-0.1.0](https://github.com/copernet/wormhole/releases) )according to the installation instructions:[https://github.com/copernet/wormhole/tree/master/doc](https://github.com/copernet/wormhole/tree/master/doc). 
 
-- This sdk requires [Go](http://golang.org/) 1.8 or newer.
+- [Go](http://golang.org/) 1.8 or newer required.
 
 - Install:
 
-  1. clone this repository. In order to clone and install dependencies at the same time, you should use `go get github.com/copernet/whc.go` and this way is recommended.
+  - Recommended method:
 
-     ```
-     git clone https://github.com/copernet/whc.go.git $GOPATH/src/github.com/copernet/whc.go
-     ```
+    ```
+    go get github.com/copernet/whc.go
+    ```
 
-  2. install dependencies. If you install this repository via `go get github.com/copernet/whc.go `, the following instructions should be ignored:
+  - Optional method: 
 
-     ```
-     go get github.com/btcsuite/go-socks
-     go get github.com/btcsuite/websocket
-     go get github.com/btcsuite/btclog
-     go get github.com/bcext/gcash
-     go get github.com/bcext/cashutil
-     ```
+    1. clone repository
 
-  3. Now, import this sdk package in your own project like this: `import github.com/copernet/whc.go/rpcclient`. And the detailed usage examples as the followings.
+    ```
+    git clone https://github.com/copernet/whc.go.git $GOPATH/src/github.com/copernet/whc.go
+    ```
 
-#### Examples:
+    2. dependencies installation:
 
-1. Now, you should run a wormhole client and configurate correctly, `rpcuser` and `rpcpassword` fields are  necessary. If your project servers on a differect server machine from wormhole, the `rpcallowip`field is necessary. The following is a simple example for wormhole configuration:
+    ```
+    go get github.com/btcsuite/go-socks
+    go get github.com/btcsuite/websocket
+    go get github.com/btcsuite/btclog
+    go get github.com/bcext/gcash
+    go get github.com/bcext/cashutil
+    ```
+
+
+#### Usage Example:
+
+1. Install and run a wormhole client and configurate correctly, `rpcuser` , `rpcpassword`  and `rpcallowip` fields are  necessary. The following is a simple example for wormhole configuration(default in ~/.bitcoin/bitcoin.conf file):
 
    ```
    rpcuser=D313FF53C1
@@ -41,7 +48,7 @@ whc.go provides the full wormhole and bitcoin cash relative operation and query 
    startclean=1
    ```
 
-2. In your project, a cofiguration with necessary fields is recommended. For simple usage, the following example uses hard coded configuration.
+2. Connect to wormhole server.
 
    ```
    func main() {
@@ -60,24 +67,68 @@ whc.go provides the full wormhole and bitcoin cash relative operation and query 
    		log.Fatal(err)
    	}
    	defer client.Shutdown()
-   
-   	// Get the current wormhole relative information.
-   	info, err := client.WhcGetInfo()
-   	if err != nil {
-   		log.Fatal(err)
-   	}
-   	log.Printf("Block count: %d", info.Block)
    }
-   
-   // possible output:
-   1251782
    ```
 
    >  Please refer to usage examples: [examples/whcinfo.go](https://github.com/copernet/whc.go/blob/master/examples/whcinfo.go). More APIs are supported as the followings. Open a [issue](https://github.com/copernet/whc.go/issues/new) if necessary.
 
+3. Usage
+
+   - Fetch the current block height for wormhole client
+
+     ```
+     // Get the current wormhole relative information.
+     info, err := client.WhcGetInfo()
+     if err != nil {
+     	log.Fatal(err)
+     }
+     
+     log.Printf("Block count: %d", info.Block)
+     ```
+
+   - Fetch properties list in the current wormhole system
+
+     ```
+     // Fetch all wormhole properties.
+     list, err := client.WhcListProperties()
+     if err != nil {
+     	log.Fatal(err)
+     }
+     
+     log.Println(list)
+     ```
+
+   - Create a crowdsale transaction
+
+     ```
+     // necessary field
+     addressFrom := "bchtest:qqg2fwfzd4xeywf8h2zajqy77357gk0v7yvsvhd4xu"
+     ecosystem := int64(1) // must be 1
+     precision := int64(8)
+     previousID := int64(0) // must be 0
+     category := "Blockchain research"
+     subCatetory := "Bitcoin cash"
+     name := "wormhole"
+     url := "https://www.wormhole.cash"
+     data := "working for the future"
+     desiredID := int64(1) // must be 1
+     tokensPerUnit := "100"
+     deadline := int64(1582772366)
+     earlyBonus := int64(2)
+     issuerPercentage := int64(0) // must be 0
+     amount := "10000000.987"
+     
+     // Create a crowdsalle transaction
+     txHash, err := client.WhcSendIssuanceCrowdSale(addressFrom, ecosystem, precision, previousID, category,subCatetory, name, url, data, desiredID, tokensPerUnit, deadline, earlyBonus, issuerPercentage, amount)
+     
+     log.Println(txHash)
+     ```
+
+   > Notice, the wormhole client only supports `HTTP POST` mode. Completed expamle is [here](https://github.com/copernet/whc.go/blob/master/examples).
+
 #### Supported API:
 
-Now the following apis are fully supported by this sdk and will be synced with the latest version wormhole upgrade. `whc.go` intentionally been designed so it can be used as a standalone package for any projects needing the ability query and create wormhole relative transactions. 
+The following apis are fully supported by this sdk. `whc.go` intentionally been designed so it can be used as a standalone package which is convenient for import and usage.For more detailed wormhole rpc api, please refer [https://github.com/copernet/spec/blob/master/wormhole-RPC.md](https://github.com/copernet/spec/blob/master/wormhole-RPC.md)
 
 |   #   |  Method    |   Description   |
 | ---- | ---- | ---- |
@@ -131,7 +182,7 @@ Now the following apis are fully supported by this sdk and will be synced with t
 | 48 |WhcSendRawTx| Broadcasts a raw Wormhole Layer transaction. |
 | 49 |WhcSendRevoke| Revoke units of managed tokens. |
 
-All API supported sync and async access request, and all async methods suffixed with `Async`. At some situations, using async request method is more efficient. The following example using async request: 
+All API supported sync and async request mode, and all async methods suffixed with `Async`. At some situations, using async request method is more efficient. The following example using async request: 
 
 ```
 // Notice the notification parameter is nil since notifications are
@@ -142,11 +193,13 @@ if err != nil {
 }
 defer client.Shutdown()
 
+// use async mode
 r := client.WhcGetCrowdSaleAsync(34, nil)
-// do some time-consuming code
-time.Sleep(3 * time.Second)
-
+// exec a time-consuming task
+// ...
+// receive result
 result, err := r.Receive()
-```
 
-Now, you will find the program is time-saving because the program will exec a async job and the wormhole server works at the same time.
+// sync mode
+r := client.WhcGetCrowdSale(34, nil)
+```
