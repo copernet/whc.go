@@ -740,7 +740,7 @@ func init() {
 	MustRegisterCmd("whc_setautocommit", (*WhcSetAutoCommitCmd)(nil), flags)
 	MustRegisterCmd("whc_getactivecrowd", (*WhcGetActiveCrowdCmd)(nil), flags)
 	MustRegisterCmd("whc_getallbalancesforaddress", (*WhcGetAllBalancesForAddressCMd)(nil), flags)
-	MustRegisterCmd("whc_getallbalancesforid", (*WhcGetAllBalancesForAddressCMd)(nil), flags)
+	MustRegisterCmd("whc_getallbalancesforid", (*WhcGetAllBalanceForIdCmd)(nil), flags)
 	MustRegisterCmd("whc_getbalance", (*WhcGetBalanceCmd)(nil), flags)
 	MustRegisterCmd("whc_getbalanceshash", (*WhcGetBalanceHashCmd)(nil), flags)
 	MustRegisterCmd("whc_getcrowdsale", (*WhcGetCrowdSaleCmd)(nil), flags)
