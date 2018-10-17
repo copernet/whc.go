@@ -90,19 +90,19 @@ func (c *Client) WhcGetActiveCrowd(addr string) (*btcjson.WhcActiveCrowdResult, 
 
 type FutureWhcGetAllBalancesForAddressResult chan *response
 
-func (r FutureWhcGetAllBalancesForAddressResult) Receive() (*btcjson.WhcGetAllBalanceForAddressResult, error) {
+func (r FutureWhcGetAllBalancesForAddressResult) Receive() ([]btcjson.WhcGetAllBalanceForAddressResult, error) {
 	res, err := receiveFuture(r)
 	if err != nil {
 		return nil, err
 	}
 
-	var balances btcjson.WhcGetAllBalanceForAddressResult
+	var balances []btcjson.WhcGetAllBalanceForAddressResult
 	err = json.Unmarshal(res, &balances)
 	if err != nil {
 		return nil, err
 	}
 
-	return &balances, nil
+	return balances, nil
 }
 
 func (c *Client) WhcGetAllBalancesForAddressAsync(addr string) FutureWhcGetAllBalancesForAddressResult {
@@ -110,25 +110,25 @@ func (c *Client) WhcGetAllBalancesForAddressAsync(addr string) FutureWhcGetAllBa
 	return c.sendCmd(cmd)
 }
 
-func (c *Client) WhcGetAllBalancesForAddress(addr string) (*btcjson.WhcGetAllBalanceForAddressResult, error) {
+func (c *Client) WhcGetAllBalancesForAddress(addr string) ([]btcjson.WhcGetAllBalanceForAddressResult, error) {
 	return c.WhcGetAllBalancesForAddressAsync(addr).Receive()
 }
 
 type FutureWhcGetAllBalancesForIdResult chan *response
 
-func (r FutureWhcGetAllBalancesForIdResult) Receive() (*btcjson.WhcGetAllBalanceForIDResult, error) {
+func (r FutureWhcGetAllBalancesForIdResult) Receive() ([]btcjson.WhcGetAllBalanceForIDResult, error) {
 	res, err := receiveFuture(r)
 	if err != nil {
 		return nil, err
 	}
 
-	var balances btcjson.WhcGetAllBalanceForIDResult
+	var balances []btcjson.WhcGetAllBalanceForIDResult
 	err = json.Unmarshal(res, &balances)
 	if err != nil {
 		return nil, err
 	}
 
-	return &balances, nil
+	return balances, nil
 }
 
 func (c *Client) WhcGetAllBalancesForIdAsync(id uint64) FutureWhcGetAllBalancesForIdResult {
@@ -136,7 +136,7 @@ func (c *Client) WhcGetAllBalancesForIdAsync(id uint64) FutureWhcGetAllBalancesF
 	return c.sendCmd(cmd)
 }
 
-func (c *Client) WhcGetAllBalancesForID(id uint64) (*btcjson.WhcGetAllBalanceForIDResult, error) {
+func (c *Client) WhcGetAllBalancesForID(id uint64) ([]btcjson.WhcGetAllBalanceForIDResult, error) {
 	return c.WhcGetAllBalancesForIdAsync(id).Receive()
 }
 
