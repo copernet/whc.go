@@ -2,11 +2,11 @@
 
 燃烧BCH，获取WHC
 
-##### Result
+##### 返回值
 
 `string`：生成的wormhole 协议payload数据
 
-##### Examples
+##### 示例
 
 ```Go
 rpc.NewRPCInstance().WhcCreatePayloadBurnBCH()
@@ -21,15 +21,15 @@ rpc.NewRPCInstance().WhcCreatePayloadBurnBCH()
 
 修改token的发行者
 
-##### Arguments
+##### 参数
 
 - propertyid `int64` ： token的property ID
 
-##### Result
+##### 返回值
 
 `string`：生成的wormhole 协议payload数据
 
-##### Examples
+##### 示例
 
 ```
 client.WhcCreatePayloadChangeIssuer(34)
@@ -40,34 +40,11 @@ client.WhcCreatePayloadChangeIssuer(34)
 
 ---
 
-##### `WhcCreatePayloadCloseCrowdSale`
-
-关闭众筹
-
-##### Arguments
-
-- propertyid `int64` ： token的property ID
-
-##### Result
-
-`string`：生成的wormhole 协议payload数据
-
-##### Examples
-
-```
-client.WhcCreatePayloadCloseCrowdSale(46)
-
-// result:
-000000350000002e
-```
-
----
-
 ##### `WhcCreatePayloadIssuanceCrowdSale`
 
 发行可众筹的token
 
-##### Arguments
+##### 参数
 
 - eco `int64`：the ecosystem to create the tokens in, must be 1
 - precision `int64`： the precision of the tokens to create:[0, 8]
@@ -84,11 +61,11 @@ client.WhcCreatePayloadCloseCrowdSale(46)
 - tokensPerunit `string`：the amount of tokens granted per unit invested in the crowdsale
 - totalNumber `string`： (string, required) the number of tokens to create
 
-##### Result
+##### 返回值
 
 `string`：生成的wormhole 协议payload数据
 
-##### Examples
+##### 示例
 
 ```
 client.WhcCreatePayloadIssuanceCrowdSale(1, 8, 0, 1, 1540470809, 23, 0, "womhole expamle", "awesome", "crowdSaleToken", "https://wormhole.cash", "welcome to wormhole ecosystem", "12.34", "12734782")
@@ -99,11 +76,57 @@ client.WhcCreatePayloadIssuanceCrowdSale(1, 8, 0, 1, 1540470809, 23, 0, "womhole
 
 ---
 
+##### `WhcCreatePayloadPartiCrowdSale`
+
+参与众筹
+
+##### 参数
+
+- amount `string`：the amount of WHC to particrowsale
+
+##### 返回值
+
+`string`：生成的wormhole 协议payload数据
+
+##### 示例
+
+```
+client.WhcCreatePayloadPartiCrowdSale("90.23")
+
+// result:
+00000001000000010000000219d00dc0
+```
+
+---
+
+##### `WhcCreatePayloadCloseCrowdSale`
+
+关闭众筹
+
+##### 参数
+
+- propertyid `int64` ： token的property ID
+
+##### 返回值
+
+`string`：生成的wormhole 协议payload数据
+
+##### 示例
+
+```
+client.WhcCreatePayloadCloseCrowdSale(46)
+
+// result:
+000000350000002e
+```
+
+---
+
 ##### `WhcCreatePayloadIssuanceFixed`
 
 发行固定数量的token
 
-##### Arguments
+##### 参数
 
 - eco `int64`：the ecosystem to create the tokens in, must be 1
 - precision `int64`： the precision of the tokens to create:[0, 8]
@@ -115,11 +138,11 @@ client.WhcCreatePayloadIssuanceCrowdSale(1, 8, 0, 1, 1540470809, 23, 0, "womhole
 - data `string`： a description for the new tokens (can be "")
 - amount `string`： (string, required) the number of tokens to create
 
-##### Result
+##### 返回值
 
 `string`：生成的wormhole 协议payload数据
 
-##### Examples
+##### 示例
 
 ```
 client.WhcCreatePayloadIssuanceFixed(1, 8, 0, "womhole expamle", "awesome", "crowdSaleToken", "https://wormhole.cash", "welcome to wormhole ecosystem", "12734782")
@@ -134,7 +157,7 @@ client.WhcCreatePayloadIssuanceFixed(1, 8, 0, "womhole expamle", "awesome", "cro
 
 发行可管理的token
 
-##### Arguments
+##### 参数
 
 - eco `int64`：the ecosystem to create the tokens in, must be 1
 - precision `int64`： the precision of the tokens to create:[0, 8]
@@ -145,11 +168,11 @@ client.WhcCreatePayloadIssuanceFixed(1, 8, 0, "womhole expamle", "awesome", "cro
 - url `string`： an URL for further information about the new tokens (can be "")
 - data `string`： a description for the new tokens (can be "")
 
-##### Result
+##### 返回值
 
 `string`：生成的wormhole 协议payload数据
 
-##### Examples
+##### 示例
 
 ```
 client.WhcCreatePayloadIssuanceManaged(1, 8, 0, "womhole expamle", "awesome", "crowdSaleToken", "https://wormhole.cash", "welcome to wormhole ecosystem")
@@ -160,25 +183,27 @@ client.WhcCreatePayloadIssuanceManaged(1, 8, 0, "womhole expamle", "awesome", "c
 
 ---
 
-##### `WhcCreatePayloadPartiCrowdSale`
+##### `WhcCreatePayloadGrant`
 
-参与众筹
+增发指定数量的可管理token
 
-##### Arguments
+##### 参数
 
-- amount `string`：the amount of WHC to particrowsale
+- id `int64`：the identifier of the tokens to revoke
+- amount `string`：the amount of tokens to revok
+- note `*string` **optional**：a text note attached to this transaction (none by default)
 
-##### Result
+##### 返回值
 
 `string`：生成的wormhole 协议payload数据
 
-##### Examples
+##### 示例
 
 ```
-client.WhcCreatePayloadPartiCrowdSale("90.23")
+client.WhcCreatePayloadGrant(4, "90.23", nil)
 
 // result:
-00000001000000010000000219d00dc0
+000000370000000400000000000008fc00
 ```
 
 ---
@@ -187,17 +212,17 @@ client.WhcCreatePayloadPartiCrowdSale("90.23")
 
 销毁指定数量的可管理token
 
-##### Arguments
+##### 参数
 
 - id `int64`：the identifier of the tokens to revoke
 - amount `string`：the amount of tokens to revok
 - note `*string` **optional**：a text note attached to this transaction (none by default)
 
-##### Result
+##### 返回值
 
 `string`：生成的wormhole 协议payload数据
 
-##### Examples
+##### 示例
 
 ```
 client.WhcCreatePayloadRevoke(4, "90.23", nil)
@@ -212,15 +237,15 @@ client.WhcCreatePayloadRevoke(4, "90.23", nil)
 
 发送指定地址的所有token至另一个地址
 
-##### Arguments
+##### 参数
 
 - eco `int64`： the ecosystem to create the tokens in, must be 1
 
-##### Result
+##### 返回值
 
 `string`：生成的wormhole 协议payload数据
 
-##### Examples
+##### 示例
 
 ```
 client.WhcCreatePayloadSendAll(1)
@@ -235,16 +260,16 @@ client.WhcCreatePayloadSendAll(1)
 
 token转账
 
-##### Arguments
+##### 参数
 
 - id `int64`：the identifier of the tokens to send
 - amount `string`：the amount to send
 
-##### Result
+##### 返回值
 
 `string`：生成的wormhole 协议payload数据
 
-##### Examples
+##### 示例
 
 ```
 client.WhcCreatePayloadSimpleSend(35, "23")
@@ -259,17 +284,17 @@ client.WhcCreatePayloadSimpleSend(35, "23")
 
 空投
 
-##### Arguments
+##### 参数
 
 - fromId `int64`：the identifier of the tokens to distribute
 - amount `string`：the amount to distribute
-- toID `*int64`：the identifier of the property holders to distribute to
+- toID `*int64` **optional**：the identifier of the property holders to distribute to
 
-##### Result
+##### 返回值
 
 `string`：生成的wormhole 协议payload数据
 
-##### Examples
+##### 示例
 
 ```
 client.WhcCreatePayloadSto(35, "23", nil)

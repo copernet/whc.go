@@ -39,5 +39,5 @@ func NewRPCInstance() *rpcclient.Client {
 }
 ```
 
-> 上面的RPC客户端实例化代码，应该在您的项目中被初始化。SDK仅仅提供实例化的方法: `rpcclient.New(connCfg, nil)`
+> 您的项目中应该包含上面的RPC客户端实例化代码。SDK仅仅提供实例化的方法: `rpcclient.New(connCfg, nil)`。
 
