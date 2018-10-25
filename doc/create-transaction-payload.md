@@ -21,6 +21,10 @@ rpc.NewRPCInstance().WhcCreatePayloadBurnBCH()
 
 修改token的发行者
 
+##### Arguments
+
+- propertyid `int64` ： token的property ID
+
 ##### Result
 
 `string`：生成的wormhole 协议payload数据
@@ -39,6 +43,10 @@ client.WhcCreatePayloadChangeIssuer(34)
 ##### `WhcCreatePayloadCloseCrowdSale`
 
 关闭众筹
+
+##### Arguments
+
+- propertyid `int64` ： token的property ID
 
 ##### Result
 
@@ -59,6 +67,23 @@ client.WhcCreatePayloadCloseCrowdSale(46)
 
 发行可众筹的token
 
+##### Arguments
+
+- eco `int64`：the ecosystem to create the tokens in, must be 1
+- precision `int64`： the precision of the tokens to create:[0, 8]
+- preId `int64`： an identifier of a predecessor token (0 for new crowdsales)
+- desiredID`int64`：the identifier of a token eligible to participate in the crowdsale
+- deadline   `int64`：the deadline of the crowdsale as Unix timestamp
+- earlyBonus `int64`：an early bird bonus for participants in percent per week
+- issuerPercentage `int64`：(number, required) the value must be 0
+- category `string `： a category for the new tokens (can be "")
+- subcategory `string`：a subcategory for the new tokens  (can be "")
+- name`string` the name of the new tokens to create
+- url `string`： an URL for further information about the new tokens (can be "")
+- data `string`： a description for the new tokens (can be "")
+- tokensPerunit `string`：the amount of tokens granted per unit invested in the crowdsale
+- totalNumber `string`： (string, required) the number of tokens to create
+
 ##### Result
 
 `string`：生成的wormhole 协议payload数据
@@ -77,6 +102,18 @@ client.WhcCreatePayloadIssuanceCrowdSale(1, 8, 0, 1, 1540470809, 23, 0, "womhole
 ##### `WhcCreatePayloadIssuanceFixed`
 
 发行固定数量的token
+
+##### Arguments
+
+- eco `int64`：the ecosystem to create the tokens in, must be 1
+- precision `int64`： the precision of the tokens to create:[0, 8]
+- preId `int64`： an identifier of a predecessor token (0 for new crowdsales)
+- category `string `： a category for the new tokens (can be "")
+- subcategory `string`：a subcategory for the new tokens  (can be "")
+- name`string` the name of the new tokens to create
+- url `string`： an URL for further information about the new tokens (can be "")
+- data `string`： a description for the new tokens (can be "")
+- amount `string`： (string, required) the number of tokens to create
 
 ##### Result
 
@@ -97,6 +134,17 @@ client.WhcCreatePayloadIssuanceFixed(1, 8, 0, "womhole expamle", "awesome", "cro
 
 发行可管理的token
 
+##### Arguments
+
+- eco `int64`：the ecosystem to create the tokens in, must be 1
+- precision `int64`： the precision of the tokens to create:[0, 8]
+- preId `int64`： an identifier of a predecessor token (0 for new crowdsales)
+- category `string `： a category for the new tokens (can be "")
+- subcategory `string`：a subcategory for the new tokens  (can be "")
+- name`string` the name of the new tokens to create
+- url `string`： an URL for further information about the new tokens (can be "")
+- data `string`： a description for the new tokens (can be "")
+
 ##### Result
 
 `string`：生成的wormhole 协议payload数据
@@ -115,6 +163,10 @@ client.WhcCreatePayloadIssuanceManaged(1, 8, 0, "womhole expamle", "awesome", "c
 ##### `WhcCreatePayloadPartiCrowdSale`
 
 参与众筹
+
+##### Arguments
+
+- amount `string`：the amount of WHC to particrowsale
 
 ##### Result
 
@@ -135,6 +187,12 @@ client.WhcCreatePayloadPartiCrowdSale("90.23")
 
 销毁指定数量的可管理token
 
+##### Arguments
+
+- id `int64`：the identifier of the tokens to revoke
+- amount `string`：the amount of tokens to revok
+- note `*string` **optional**：a text note attached to this transaction (none by default)
+
 ##### Result
 
 `string`：生成的wormhole 协议payload数据
@@ -153,6 +211,10 @@ client.WhcCreatePayloadRevoke(4, "90.23", nil)
 ##### `WhcCreatePayloadSendAll`
 
 发送指定地址的所有token至另一个地址
+
+##### Arguments
+
+- eco `int64`： the ecosystem to create the tokens in, must be 1
 
 ##### Result
 
@@ -173,6 +235,11 @@ client.WhcCreatePayloadSendAll(1)
 
 token转账
 
+##### Arguments
+
+- id `int64`：the identifier of the tokens to send
+- amount `string`：the amount to send
+
 ##### Result
 
 `string`：生成的wormhole 协议payload数据
@@ -191,6 +258,12 @@ client.WhcCreatePayloadSimpleSend(35, "23")
 ##### `WhcCreatePayloadSto`
 
 空投
+
+##### Arguments
+
+- fromId `int64`：the identifier of the tokens to distribute
+- amount `string`：the amount to distribute
+- toID `*int64`：the identifier of the property holders to distribute to
 
 ##### Result
 
