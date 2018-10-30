@@ -16,10 +16,13 @@
 rpc.NewRPCInstance().WhcGetAllBalancesForAddress("bchtest:qz04wg2jj75x34tge2v8w0l6r0repfcvcygv3t7sg5")
 
 // result:
-Result: 
 [
-    {PropertyID:1, Balance:127.88577709, Reserved:0.00000000},
-    {PropertyID:3, Balance:80, Reserved:0}
+    {
+      "propertyid": 1,
+      "balance": "127.88577709",
+      "reserved": "0.00000000"
+    },
+   ...
 ]
 ```
 
@@ -43,9 +46,12 @@ Result:
 rpc.NewRPCInstance().WhcGetAllBalancesForID(34)
 
 // result:
-Result: 
 [
-    {Address:"bchtest:qqwrj8yer7us830ca4y7fw89q24gh3cu8u8a7z489j", Balance:99999999999999.9, Reserved:0.0}
+    {
+      "address": "bchtest:qqwrj8yer7us830ca4y7fw89q24gh3cu8u8a7z489j",
+      "balance": "99999999999999.9",
+      "reserved": "0.0"
+    }
 ]
 ```
 
@@ -71,7 +77,10 @@ rpc.NewRPCInstance().WhcGetBalances("bchtest:qqwrj8yer7us830ca4y7fw89q24gh3cu8u8
 
 // result:
 Result: 
-&{Balance:99999999999999.9, Reserved:0.0}
+{
+    "balance": "99999999999999.9",
+    "reserved": "0.0"
+}
 ```
 
 ------
@@ -94,10 +103,11 @@ Result:
 rpc.NewRPCInstance().WhcGetBalanceHash(34)
 
 // result:
-Result: 
-&{
-    Block:1265108, 		     BlockHash:000000000000022adc8dc94b42bca3d1fd19ed7ff5ee4788fc8417871bba9b98,
-    PropertyID:34, BalanceHash:03fd20f7b9292e88ac6f5d57d167189e1576aa1cbeeca8ad68d4303eb22e0e24
+{
+    "block": 1265214,
+    "blockhash": "00000000f519e18cf3c9bfdd80629bfc32c3b953f6abc1376de9766e1eb2825e",
+    "propertyid": 34,
+    "balanceshash": "03fd20f7b9292e88ac6f5d57d167189e1576aa1cbeeca8ad68d4303eb22e0e24"
 }
 ```
 
@@ -123,27 +133,29 @@ var verbose = true
 rpc.NewRPCInstance().WhcGetCrowdSale(34, &verbose)
 
 // result:
-Result: 
-&{PropertyId:30,
-Name:qshuaifinalcrowsale,
-Active:true,
-Issuer:bchtest:qque8sgqke0w94sjmkqdhs9zwvdlgepgnvu2nfkguy,
-PropertyIdDesired:1,
-Precision:2,
-TokensPerUnit:10.00000000,
-EarlyBonus:10,
-StartTime:1533018995,
-DeadLine:1659199632,
-AmountRaised:34.99981568,
-TokensIssued:12345.12,
-AddedIssuerTokens:0.00,
-CloseDearly:<nil>,
-MaxTokens:<nil>,
-EndedTime:0,
-TxidClosed:<nil>,
-ParticipantTxs:[
-{TxID:f71b2b538592a965a2b20655af5d44ebdf3ba8b93671ca77a61045dec83de6e4, Amount:0.99997384, ParticipantTokens:217.34} 		{TxID:89b435caef90f07afb4d1376dd66d2980931ac136eff4a226993de4fad5c1462, Amount:9.99998423, ParticipantTokens:2173.42} {TxID:6c94e33ab5f03788b2a9ad8573ca007339a8578658c886f5b034165589fd66ba, Amount:19.99996988, ParticipantTokens:4346.75} {TxID:f94f0863ba03ef252fcc821538e825665a598f0798f4d03a26380b9a732cdf10, Amount:0.99997398, ParticipantTokens:216.65} {TxID:c9650ca8eb4e5186eb56ead7f2b1b7ca32cee635af9ef087c7f7f9fe816cb058, Amount:0.99997387, ParticipantTokens:216.30} {TxID:ae7ce16077efc1e7241a8a35e699c87cb284761ff644c4a7d9bdc6594be31fc1, Amount:0.99997305, ParticipantTokens:216.18} {TxID:ba7df1bd956cd7c751b7abb7ed83f3a87c783226ca6d80d7020481b8e2772288, Amount:0.99996683, ParticipantTokens:214.21}
-]
+{
+    "propertyid": 30,
+    "name": "qshuaifinalcrowsale",
+    "active": true,
+    "issuer": "bchtest:qque8sgqke0w94sjmkqdhs9zwvdlgepgnvu2nfkguy",
+    "propertyiddesired": 1,
+    "precision": "2",
+    "tokensperunit": "10.00000000",
+    "earlybonus": 10,
+    "starttime": 1533018995,
+    "deadline": 1659199632,
+    "amountraised": "34.99981568",
+    "tokensissued": "12345.12",
+    "addedissuertokens": "0.00",
+    "closetx": null,
+    "participanttransactions": [
+      {
+        "txid": "f71b2b538592a965a2b20655af5d44ebdf3ba8b93671ca77a61045dec83de6e4",
+        "amountsent": "0.99997384",
+        "participanttokens": "217.34"
+      },
+      ...
+    ]
 }
 ```
 
@@ -163,9 +175,11 @@ ParticipantTxs:[
 rpc.NewRPCInstance().WhcGetCurrentConsensusHash()
 
 // result:
-Result: 
-&{Block:1265109, BlockHash:00000000000001e9f846c2818ca644e9148e52cae3198d05bc11c567f0740acb, ConsensusHash:739bc69e4743a1ff51c57df7ae7b75b8f2340c1724c4eb7dc70eb6cc3c9d8144}
-
+{
+    "block": 1265214,
+    "blockhash": "00000000f519e18cf3c9bfdd80629bfc32c3b953f6abc1376de9766e1eb2825e",
+    "consensushash": "16dfec22f81abcaf3824a9e8fcb08044c287e597233a18645b03e57d60bd8ce5"
+}
 ```
 
 ------
@@ -188,32 +202,23 @@ Result:
 rpc.NewRPCInstance().WhcGetGrants(3)
 
 // result:
-Result: 
-&btcjson.WhcGetGrantsResult{PropertyID:0x3, Name:"test_token1", Issuer:"bchtest:qz04wg2jj75x34tge2v8w0l6r0repfcvcygv3t7sg5", CreateTxID:"1c3f95acbd6eb38e2a7c26b12dc9138b4523c355a20944874bdc3c82f4c5e4e1", TotalTokens:"90", Issuance:[]btcjson.IssuanceTxs{btcjson.IssuanceTxs{TxID:"a1f2d0126a04296aad6f492a0ef8c1c1afb781efc6c5f37de105790a7debcf87", Grant:"", Revoke:"10"}, btcjson.IssuanceTxs{TxID:"6afffd7d14060b6e79c504c5f17596616eb99356b71d301b5b37df1df065b9a0", Grant:"100", Revoke:""}}}
-```
-
-------
-
-##### `WhcGetGrants`
-
-获取指定管理token的增发，销毁信息
-
-**Arguments**
-
-1. property id `uint64`
-
-##### 返回值
-
-##### `pointer`
-
-##### 示例
-
-```Go
-rpc.NewRPCInstance().WhcGetGrants(3)
-
-// result:
-Result: 
-&WhcGetGrantsResult{PropertyID:0x3, Name:"test_token1", Issuer:"bchtest:qz04wg2jj75x34tge2v8w0l6r0repfcvcygv3t7sg5", CreateTxID:"1c3f95acbd6eb38e2a7c26b12dc9138b4523c355a20944874bdc3c82f4c5e4e1", TotalTokens:"90", Issuance:[]btcjson.IssuanceTxs{btcjson.IssuanceTxs{TxID:"a1f2d0126a04296aad6f492a0ef8c1c1afb781efc6c5f37de105790a7debcf87", Grant:"", Revoke:"10"}, btcjson.IssuanceTxs{TxID:"6afffd7d14060b6e79c504c5f17596616eb99356b71d301b5b37df1df065b9a0", Grant:"100", Revoke:""}}}
+{
+    "propertyid": 3,
+    "name": "test_token1",
+    "issuer": "bchtest:qz04wg2jj75x34tge2v8w0l6r0repfcvcygv3t7sg5",
+    "creationtxid": "1c3f95acbd6eb38e2a7c26b12dc9138b4523c355a20944874bdc3c82f4c5e4e1",
+    "totaltokens": "90",
+    "issuances": [
+      {
+        "txid": "a1f2d0126a04296aad6f492a0ef8c1c1afb781efc6c5f37de105790a7debcf87",
+        "revoke": "10"
+      },
+      {
+        "txid": "6afffd7d14060b6e79c504c5f17596616eb99356b71d301b5b37df1df065b9a0",
+        "grant": "100"
+      }
+    ]
+}
 ```
 
 ------
@@ -233,7 +238,17 @@ rpc.NewRPCInstance().WhcGetInfo()
 
 // result:
 Result: 
-&WhcGetInfoResultResult{VersionInt:10000000, Version:"0.1.0", BitcoinVersion:"0.17.2", Block:1265112, BlockTime:1540802803, Txs:0, TotalTrades:0, TotalTxs:2694, Alerts:[]btcjson.AlertInfo{}}
+{
+    "wormholeversion_int": 10000000,
+    "wormholeversion": "0.1.0",
+    "bitcoincoreversion": "0.17.2",
+    "block": 1265220,
+    "blocktime": 1540877466,
+    "blocktransactions": 0,
+    "totaltrades": 0,
+    "totaltransactions": 2704,
+    "alerts": []
+}
 ```
 
 ------
@@ -256,8 +271,10 @@ Result:
 rpc.NewRPCInstance().WhcGetPayload("6579dea76c3d0b4463671c5476f90f20c746992c300a4b8ec4ce6748c0960836")
 
 // result:
-Result: 
-&WhcGetPayloadResult{Payload:"000000360100020000000074657374206d616e6167656420746f6b656e2032007465737400746573745f746f6b656e31007777772e746573746d616e61676564746f6b656e2e636f6d006d79206461746100", PayloadSize:82}
+{
+    "payload": "000000360100020000000074657374206d616e6167656420746f6b656e2032007465737400746573745f746f6b656e31007777772e746573746d616e61676564746f6b656e2e636f6d006d79206461746100",
+    "payloadsize": 82
+}
 ```
 
 ------
@@ -280,15 +297,28 @@ Result:
 rpc.NewRPCInstance().WhcGetProperty(123)
 
 // result:
-Result: 
-&WhcGetPropertyResult{PropertyID:0x7b, Name:"212", Category:"", Subcategory:"", Data:"1", Url:"1", Precision:1, Issuer:"bchtest:qq6qag6mv2fzuq73qanm6k60wppy23djnv7ddk3lpk", CreateTxID:"5b757ee98840b97ef14445fe25ace4dc5f2aba9eb2d447e7bc886db20bfa65b7", FixedIssuance:true, ManagedIssuance:false, FreezingEnabled:(*bool)(nil), TotalTokens:"1.0"}
+{
+    "propertyid": 123,
+    "name": "212",
+    "category": "",
+    "subcategory": "",
+    "data": "1",
+    "url": "1",
+    "precision": 1,
+    "issuer": "bchtest:qq6qag6mv2fzuq73qanm6k60wppy23djnv7ddk3lpk",
+    "creationtxid": "5b757ee98840b97ef14445fe25ace4dc5f2aba9eb2d447e7bc886db20bfa65b7",
+    "fixedissuance": true,
+    "managedissuance": false,
+    "freezingenabled": null,
+    "totaltokens": "1.0"
+}
 ```
 
 ------
 
 ##### `WhcListTransactions`
 
-获取指定token的信息
+列出与节点钱包中的wormhole交易
 
 **Arguments**
 
@@ -300,19 +330,149 @@ Result:
 
 ##### 返回值
 
-##### `pointer`
+##### `array`
 
 ##### 示例
 
-```Go
+```json
 height := 1437719290
 rpc.NewRPCInstance().WhcListTransactions(nil, nil, nil, &height, nil)
 
 // result:
-Result: 
-&WhcGetPropertyResult{PropertyID:0x7b, Name:"212", Category:"", Subcategory:"", Data:"1", Url:"1", Precision:1, Issuer:"bchtest:qq6qag6mv2fzuq73qanm6k60wppy23djnv7ddk3lpk", CreateTxID:"5b757ee98840b97ef14445fe25ace4dc5f2aba9eb2d447e7bc886db20bfa65b7", FixedIssuance:true, ManagedIssuance:false, FreezingEnabled:(*bool)(nil), TotalTokens:"1.0"}
+[
+    {
+      "txid": "35f3210fd2963f901f7d49a4bff2a0f537ed9f27698c5372253a2e1d1d9f9a4c",
+      "fee": "520",
+      "sendingaddress": "bchtest:qqu9lh4jpc05p59pfhu9amyv9uvder8j3sa2up95vs",
+      "referenceaddress": "bchtest:qqgrkkpyj050wxzj8vaca36nvyy9qgxm0s93z4fqac",
+      "ismine": true,
+      "version": 0,
+      "type_int": 0,
+      "type": "Simple Send",
+      "block": 1263586,
+      "confirmations": 1625,
+      "valid": true,
+      "blockhash": "00000000000003562e87cb521904cfe3022d8ee2d7caae111b6dcbd134cc51d3",
+      "blocktime": 1540037998,
+      "propertyid": 1,
+      "precision": "8",
+      "amount": "100.00000000",
+      "subsends": null
+    }
+]
 ```
 
 ------
 
-#####  
+#####  `WhcGetTransaction`
+
+获取指定交易的wormhole协议信息
+
+**Arguments**
+
+1. tx hash `string`
+
+##### 返回值
+
+##### `pointer`
+
+##### 示例
+
+```json
+filter := "*"
+rpc.NewRPCInstance().WhcGetTransaction("b319fecd3998dd689044c59d33d09b28654f31b8ae0123492b8a6e295467b6dc")
+
+// result:
+{
+    "txid": "b319fecd3998dd689044c59d33d09b28654f31b8ae0123492b8a6e295467b6dc",
+    "fee": "4555",
+    "sendingaddress": "bchtest:qqwxfed2405mk3k4l82ejdt85s4ng8fmdyxye4rtwl",
+    "ismine": false,
+    "version": 0,
+    "type_int": 3,
+    "type": "Send To Owners",
+    "block": 1249821,
+    "confirmations": 15390,
+    "valid": true,
+    "blockhash": "000000000000323f30f14da5c5f15efa24bbc9d567b0b34070595398dc09c5f9",
+    "blocktime": 1533205768,
+    "propertyid": 1,
+    "precision": "8",
+    "amount": "10.00000000",
+    "subsends": null
+}
+```
+
+------
+
+##### `WhcListPendingTransactions`
+
+获取节点待确认的wormhole交易列表
+
+**Arguments**
+
+1. address `pointer`
+
+##### 返回值
+
+##### `array`
+
+##### 示例
+
+```json
+filter := "*"
+rpc.NewRPCInstance().WhcListPendingTransactions(1249129)
+
+// result:
+[
+    {
+      "txid": "e50c03aa0691c9a55872fa40da0acbab7b545015bed74e0e3231e80597fe27d6",
+      "fee": "282",
+      "sendingaddress": "bchtest:qrpdz05x8n4fxs80w07gsdxp5qe208kg6us3r2l27l",
+      "referenceaddress": "bchtest:qrengre4vk4h5dd2uarnssmkqg43y0ep5cn7lf2w0w",
+      "ismine": false,
+      "version": 0,
+      "type_int": 0,
+      "type": "Simple Send",
+      "propertyid": 1,
+      "precision": "8",
+      "amount": "0.00010000",
+      "subsends": null
+    }
+]
+```
+
+------
+
+##### `WhcListProperties`
+
+列出wormhole系统中的所有token
+
+##### 返回值
+
+##### `array`
+
+##### 示例
+
+```json
+filter := "*"
+rpc.NewRPCInstance().WhcListProperties(1249129)
+
+// result:
+[
+    {
+      "propertyid": 1,
+      "name": "WHC",
+      "category": "N/A",
+      "subcategory": "N/A",
+      "data": "WHC serve as the binding between Bitcoin cash, smart properties and contracts created on the Wormhole.",
+      "url": "http://www.wormhole.cash",
+      "precision": 8
+    },
+    ...
+]
+```
+
+------
+
+##### 
