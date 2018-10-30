@@ -1,4 +1,4 @@
-`WhcGetAllBalancesForAddress`
+##### `WhcGetAllBalancesForAddress`
 
 获取指定地址所有种类的token金额
 
@@ -28,7 +28,7 @@ rpc.NewRPCInstance().WhcGetAllBalancesForAddress("bchtest:qz04wg2jj75x34tge2v8w0
 
 ------
 
-`WhcGetAllBalancesForID`
+##### `WhcGetAllBalancesForID`
 
 获取wormhole系统中含有指定token的所有地址及金额信息
 
