@@ -9,8 +9,9 @@ whc.go is a SDK servicing for wormhole protocol written in golang. It is signifi
 
 ### Documents:
 
-- [Getting Started]()
-- [Create Transaction Payload]()
-- [RawTransactions]()
-- [DataRetrieval]()
+- [Getting Started](https://github.com/copernet/whc.go/blob/master/doc/getting-start.md)
+- [RPC client instance](https://github.com/copernet/whc.go/blob/master/doc/create-rpc-instance.md)
+- [Create Transaction Payload](https://github.com/copernet/whc.go/blob/master/doc/create-transaction-payload.md)
+- [RawTransactions](https://github.com/copernet/whc.go/blob/master/doc/raw-transactions.md)
+- [DataRetrieval](https://github.com/copernet/whc.go/blob/master/doc/%20data-retrieval.md)
 
