@@ -16,6 +16,6 @@ whc.go 是wormhole客户端的golang版本的SDK，其意义在于让开发者�
 - [Create Transaction Payload]()
 - [RawTransactions]()
 
-- [Get Trasnsaction Data]()
+- [DataRetrieval]()
 
 
