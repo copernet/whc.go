@@ -1,8 +1,8 @@
-### RPC Instantiation :
+### RPC客户端实例化:
 
-All callers for `whc.go` SDK APIs are the Instantiated RPC object.
+文档中使用的所有 `client` 对象都是经过如下的初始化之后才能使用的，推荐使用单例模式获取RPC客户端实例化对象。
 
-Example：
+RPC客户端对象实例化示例：
 
 ```Go
 package rpc
@@ -39,5 +39,5 @@ func NewRPCInstance() *rpcclient.Client {
 }
 ```
 
-> The code of RPC instantiation is necessary in your own project. SDK only supplies a exported instantiation function: `rpcclient.New(connCfg, nil)`。
+> 您的项目中应该包含上面的RPC客户端实例化代码。SDK仅仅提供实例化的方法: `rpcclient.New(connCfg, nil)`。
 

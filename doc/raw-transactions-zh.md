@@ -1,26 +1,20 @@
 ##### `WhcCreateRawTxChange`
 
-Adds a change output to the transaction.
-
-The provided inputs are not added to the transaction, but only used to determine the change. It is assumed that the inputs were previously added, for example via "createrawtransaction".
-
-Optionally a position can be provided, where the change output should be inserted, starting with 0. If the number of outputs is smaller than the position, then the change output is added to the end. Change outputs should be inserted before reference outputs, and as per default, the change output is added to the first position.
-
-If the change amount would be considered as dust, then no change output is added.
+向未签名交易输出集合的指定位置追加一个交易输出
 
 **Arguments**
 
-1. rawtx `string` required: the raw transaction to extend
-2. prev `array` required: a array of transaction inputs
-3. address `string`  required: the destination for the change
-4. fee `string  `required: the desired transaction fees
-5. position `pointer` optional: the position of the change output (default: first position)
+1. rawtx `string`
+2. prev `array`
+3. address `string`
+4. fee `string`
+5. position `pointer`
 
-##### Result
+##### 返回值
 
 ##### `string`
 
-##### Example
+##### 示例
 
 ```json
 inputs := []btcjson.PrevTx{
@@ -41,21 +35,19 @@ rpc.NewRPCInstance().WhcCreateRawTxChange("0100000001b15ee60431ef57ec682790dec5a
 
 ##### `WhcCreateRawTxInput`
 
-Adds a transaction input to the transaction.
-
-If no raw transaction is provided, a new transaction is created.
+向未签名的交易追加一个交易输入
 
 **Arguments**
 
-1. rawtx `string` required: the raw transaction to extend (can be null)
-2. tx hash `string    `  required: the hash of the input transaction
-3. index `int` required: the index of the transaction output used as input
+1. rawtx `string`
+2. tx hash `string`
+3. index `int`
 
-##### Result
+##### 返回值
 
-`string`
+##### `string`
 
-##### Example
+##### 示例
 
 ```json
 rpc.NewRPCInstance().WhcCreateRawTxInput("01000000000000000000", "b006729017df05eda586df9ad3f8ccfee5be340aadf88155b784d1fc0e8342ee", 0)
@@ -68,24 +60,18 @@ rpc.NewRPCInstance().WhcCreateRawTxInput("01000000000000000000", "b006729017df05
 
 ##### `WhcCreateRawTxOpReturn`
 
-whc_createrawtx_opreturn "rawtx" "payload"
-
-Adds a payload with class C (op-return) encoding to the transaction.
-
-If no raw transaction is provided, a new transaction is created.
-
-If the data encoding fails, then the transaction is not modified.
+将wormhole协议的载荷数据作为新输出的脚本追加在未签名交易中
 
 **Arguments**
 
-1. rawtx `string` required: the raw transaction to extend (can be null)
-2. payload `string` required: the hex-encoded payload to add
+1. rawtx `string`
+2. payload `string`
 
-##### Result
+##### 返回值
 
-`string`
+##### `string`
 
-##### Example
+##### 示例
 
 ```json
 rpc.NewRPCInstance().WhcCreateRawTxOpReturn("01000000000000000000", "00000000000000020000000006dac2c0")
@@ -98,23 +84,19 @@ rpc.NewRPCInstance().WhcCreateRawTxOpReturn("01000000000000000000", "00000000000
 
 ##### `WhcCreateRawTxReference`
 
-Adds a reference output to the transaction.
-
-If no raw transaction is provided, a new transaction is created.
-
-The output value is set to at least the dust threshold.
+向未签名交易追加一个交易输出
 
 **Arguments**
 
-1. rawtx `string` required:the raw transaction to extend (can be null)
-2. address `string `required: the reference address or destination
-3. amount `pointer` optional: the optional reference amount (minimal by default)
+1. rawtx `string`
+2. address `string`
+3. amount `pointer` optional
 
-##### Result
+##### 返回值
 
-`string`
+##### `string`
 
-##### Example
+##### 示例
 
 ```json
 rpc.NewRPCInstance().WhcCreateRawTxReference("0100000001a7a9402ecd77f3c9f745793c9ec805bfa2e14b89877581c734c774864247e6f50400000000ffffffff03aa0a0000000000001976a9146d18edfe073d53f84dd491dae1379f8fb0dfe5d488ac5c0d0000000000004751210252ce4bdd3ce38b4ebbc5a6e1343608230da508ff12d23d85b58c964204c4cef3210294cc195fc096f87d0f813a337ae7e5f961b1c8a18f1f8604a909b3a5121f065b52aeaa0a0000000000001976a914946cb2e08075bcbaf157e47bcb67eb2b2339d24288ac00000000", "bchtest:qrpdz05x8n4fxs80w07gsdxp5qe208kg6us3r2l27l", nil)
@@ -127,23 +109,19 @@ rpc.NewRPCInstance().WhcCreateRawTxReference("0100000001a7a9402ecd77f3c9f745793c
 
 ##### `WhcDecodeTransaction`
 
-Decodes an Omni transaction.
-
-If the inputs of the transaction are not in the chain, then they must be provided, because the transaction inputs are used to identify the sender of a transaction.
-
-A block height can be provided, which is used to determine the parsing rules.
+解析wormhole的原始交易
 
 **Arguments**
 
-1. rawtx `string` required: the raw transaction to decode
-2. prev `pointer` optional: a array of transaction inputs (default: none)
-3. height `pointer` optional: the parsing block height (default: 0 for chain height)
+1. rawtx `string`
+2. prev `pointer` optional
+3. height `pointer` optional
 
-##### Result
+##### 返回值
 
-`string`
+##### `string`
 
-##### Example
+##### 示例
 
 ```json
 rpc.NewRPCInstance().WhcDecodeTransaction("02000000019687c2769d84850b1d7331af1f37e03f19054c5850cb4c2dd148a4aafa6267f1000000006b4830450221008845964425c3600f6be736dae925e4ef289705897ea34110008aeb659ec5b4d602206cc1a781ed0e2c5f16970023fef9dc9a5eadbe2319fc7a035533b1c7b43bfb04412103511b46817ae12cf145e4c4430859a8a3b635ec8dd8c7d83352ed69841ca12582ffffffff0345899800000000001976a914385fdeb20e1f40d0a14df85eec8c2f18dc8cf28c88ac0000000000000000166a1408776863000000000000000100000002540be40022020000000000001976a914103b582493e8f718523b3b8ec75361085020db7c88ac00000000", nil, nil)
