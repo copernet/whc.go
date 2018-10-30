@@ -5,7 +5,7 @@ whc.go provides the full wormhole and bitcoin cash relative SDK written in GO.
 
 #### Requirements:
 
-- Install `wormhole ` ([Earth-0.1.0](https://github.com/copernet/wormhole/releases) )according to the installation instructions:[https://github.com/copernet/wormhole/tree/master/doc](https://github.com/copernet/wormhole/tree/master/doc). 
+- Install `wormhole ` ([Earth-0.1.0](https://github.com/copernet/wormhole/releases) ) according to the installation instructions:[https://github.com/copernet/wormhole/tree/master/doc](https://github.com/copernet/wormhole/tree/master/doc). 
 
 - [Go](http://golang.org/) 1.8 or newer required.
 

@@ -110,14 +110,20 @@ type IssuanceTxs struct {
 }
 
 func (i *IssuanceTxs) MarshalJSON() ([]byte, error) {
-	grant, err := strconv.Atoi(i.Grant)
-	if err != nil {
-		return nil, err
+	var grant, revoke int
+	var err error
+	if i.Grant != "" {
+		grant, err = strconv.Atoi(i.Grant)
+		if err != nil {
+			return nil, err
+		}
 	}
 
-	revoke, err := strconv.Atoi(i.Revoke)
-	if err != nil {
-		return nil, err
+	if i.Revoke != "" {
+		revoke, err = strconv.Atoi(i.Revoke)
+		if err != nil {
+			return nil, err
+		}
 	}
 
 	if grant > 0 {
