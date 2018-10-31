@@ -15,6 +15,6 @@ whc.go 是wormhole客户端的golang版本的SDK，其意义在于让开发者�
 - [创建RPC 客户端实例](https://github.com/copernet/whc.go/blob/master/doc/create-rpc-instance-zh.md)
 - [创建交易的payload信息](https://github.com/copernet/whc.go/blob/master/doc/create-transaction-payload-zh.md)
 - [创建原始交易](https://github.com/copernet/whc.go/blob/master/doc/raw-transactions-zh.md)
-- [获取wormhole协议信息](https://github.com/copernet/whc.go/blob/master/doc/%20data-retrieval.md)
+- [获取wormhole协议信息](https://github.com/copernet/whc.go/blob/master/doc/data-retrieval.md)
 
 
