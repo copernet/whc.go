@@ -1398,3 +1398,142 @@ func (r FutureWhcSendFreezeResult) Receive() (string, error) {
 
 	return txid, nil
 }
+
+type FutureWhcCreatePayloadFreezeResult chan *response
+
+func (r FutureWhcCreatePayloadFreezeResult) Receive() (string, error) {
+	res, err := receiveFuture(r)
+	if err != nil {
+		return "", err
+	}
+
+	var result string
+	err = json.Unmarshal(res, &result)
+	if err != nil {
+		return "", err
+	}
+
+	return result, nil
+}
+
+func (c *Client) WhcCreatePayloadFreezeAsync(toAddress string, id int64, amount string) FutureWhcCreatePayloadFreezeResult {
+	cmd := btcjson.NewWhcCreatePayloadFreezeCmd(toAddress, id, amount)
+	return c.sendCmd(cmd)
+}
+
+func (c *Client) WhcCreatePayloadFreeze(toAddress string, id int64, amount string) (string, error) {
+	return c.WhcCreatePayloadFreezeAsync(toAddress, id, amount).Receive()
+}
+
+type FutureWhcCreatePayloadUnFreezeResult chan *response
+
+func (r FutureWhcCreatePayloadUnFreezeResult) Receive() (string, error) {
+	res, err := receiveFuture(r)
+	if err != nil {
+		return "", err
+	}
+
+	var result string
+	err = json.Unmarshal(res, &result)
+	if err != nil {
+		return "", err
+	}
+
+	return result, nil
+}
+
+func (c *Client) WhcCreatePayloadUnFreezeAsync(toAddress string, id int64, amount string) FutureWhcCreatePayloadUnFreezeResult {
+	cmd := btcjson.NewWhcCreatePayloadUnFreezeCmd(toAddress, id, amount)
+	return c.sendCmd(cmd)
+}
+
+func (c *Client) WhcCreatePayloadUnFreeze(toAddress string, id int64, amount string) (string, error) {
+	return c.WhcCreatePayloadUnFreezeAsync(toAddress, id, amount).Receive()
+}
+
+type FutureWhcGetFrozenBalanceResult chan *response
+
+func (r FutureWhcGetFrozenBalanceResult) Receive() (*btcjson.FrozenBalanceResult, error) {
+	res, err := receiveFuture(r)
+	if err != nil {
+		return nil, err
+	}
+
+	var result btcjson.FrozenBalanceResult
+	err = json.Unmarshal(res, &result)
+	if err != nil {
+		return nil, err
+	}
+
+	return &result, nil
+}
+
+func (c *Client) WhcGetFrozenBalanceAsync(address string, id int64) FutureWhcGetFrozenBalanceResult {
+	cmd := btcjson.NewWhcGetFrozenBalanceCmd(address, id)
+	return c.sendCmd(cmd)
+}
+
+func (c *Client) WhcGetFrozenBalance(address string, id int64) (*btcjson.FrozenBalanceResult, error) {
+	return c.WhcGetFrozenBalanceAsync(address, id).Receive()
+}
+
+type FutureWhcGetFrozenBalanceForIdResult chan *response
+
+func (r FutureWhcGetFrozenBalanceForIdResult) Receive() (*[]btcjson.FrozenBalanceResult, error) {
+	res, err := receiveFuture(r)
+	if err != nil {
+		return nil, err
+	}
+
+	var result []btcjson.FrozenBalanceResult
+	err = json.Unmarshal(res, &result)
+	if err != nil {
+		return nil, err
+	}
+
+	return &result, nil
+}
+
+func (c *Client) WhcGetFrozenBalanceForIdAsync(id int64) FutureWhcGetFrozenBalanceForIdResult {
+	cmd := btcjson.NewWhcGetFrozenBalanceForIdCmd(id)
+	return c.sendCmd(cmd)
+}
+
+func (c *Client) WhcGetFrozenBalanceForId(id int64) (*[]btcjson.FrozenBalanceResult, error) {
+	return c.WhcGetFrozenBalanceForIdAsync(id).Receive()
+}
+
+type FutureWhcGetFrozenBalanceForAddressResult chan *response
+
+func (r FutureWhcGetFrozenBalanceForAddressResult) Receive() (*[]btcjson.FrozenBalanceResult, error) {
+	res, err := receiveFuture(r)
+	if err != nil {
+		return nil, err
+	}
+
+	var result []btcjson.FrozenBalanceResult
+	err = json.Unmarshal(res, &result)
+	if err != nil {
+		return nil, err
+	}
+
+	return &result, nil
+}
+
+func (c *Client) WhcGetFrozenBalanceForAddressAsync(address string) FutureWhcGetFrozenBalanceForAddressResult {
+	cmd := btcjson.NewWhcGetFrozenBalanceForAddressCmd(address)
+	return c.sendCmd(cmd)
+}
+
+func (c *Client) WhcGetFrozenBalanceForAddress(address string) (*[]btcjson.FrozenBalanceResult, error) {
+	return c.WhcGetFrozenBalanceForAddressAsync(address).Receive()
+}
+
+func (c *Client) WhcSendUnFreeze(fromAddress string, id int64, amount string, frozenAddress string) (string, error) {
+	return c.WhcSendUnFreezeAsync(fromAddress, id, amount, frozenAddress).Receive()
+}
+
+func (c *Client) WhcSendUnFreezeAsync(fromAddress string, id int64, amount string, frozenAddress string) FutureWhcSendFreezeResult {
+	cmd := btcjson.NewWhcSendUnFreezeCmd(fromAddress, id, amount, frozenAddress)
+	return c.sendCmd(cmd)
+}

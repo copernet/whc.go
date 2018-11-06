@@ -475,4 +475,87 @@ rpc.NewRPCInstance().WhcListProperties(1249129)
 
 ------
 
+##### `WhcGetFrozenBalance`
+
+通过地址、tokenId 查询冻结信息
+
+**Arguments**
+
+1. address `string` the address
+2. propertyid `int64` the property identifier
+
+
+##### 返回值
+
+`pointer`
+
+##### 示例
+
+```json
+rpc.NewRPCInstance().WhcGetFrozenBalance("qzuy3es55tygnmmeydh5uqc39sfkke6hlqf2dv26h0", 459)
+
+// result:
+{
+  "frozen": true,
+  "balance": "100.00000000"
+}
+```
+------
+
+##### `WhcGetFrozenBalanceForId`
+
+通过资产id，查询该资产全部冻结信息
+
+**Arguments**
+
+1. propertyid `int64` the property identifier
+
+
+##### 返回值
+
+`array`
+
+##### 示例
+
+```json
+rpc.NewRPCInstance().WhcGetFrozenBalanceForId(459)
+
+// result:
+[
+  {
+    "address": "bchtest:qqu9lh4jpc05p59pfhu9amyv9uvder8j3sa2up95vs",
+    "balance": "100.00000000"
+  }
+]
+```
+------
+
+##### `WhcGetFrozenBalanceForAddress`
+
+通过地址，查询该地址下全部冻结资产
+
+**Arguments**
+
+1. address `string` the address
+
+
+##### 返回值
+
+`array`
+
+##### 示例
+
+```json
+rpc.NewRPCInstance().WhcGetFrozenBalanceForAddress("bchtest:qqu9lh4jpc05p59pfhu9amyv9uvder8j3sa2up95vs")
+
+// result:
+[
+  {
+    "propertyid": 459,
+    "balance": "100.00000000"
+  }
+]
+
+```
+
 ##### 

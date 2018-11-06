@@ -749,6 +749,84 @@ func NewWhcSendFreezeCmd(from string, id int64, amount string, frozenAddress str
 	}
 }
 
+type WhcUnFreezeCmd struct {
+	FromAddress   string
+	PropertyID    int64
+	Amount        string
+	FrozenAddress string
+}
+
+func NewWhcSendUnFreezeCmd(from string, id int64, amount string, frozenAddress string) *WhcUnFreezeCmd {
+	return &WhcUnFreezeCmd{
+		FromAddress:   from,
+		PropertyID:    id,
+		Amount:        amount,
+		FrozenAddress: frozenAddress,
+	}
+}
+
+
+type WhcCreatePayloadFreezeCmd struct {
+	ToAddress  string
+	PropertyID int64
+	Amount     string
+}
+
+func NewWhcCreatePayloadFreezeCmd(toAddress string, id int64, amount string) *WhcCreatePayloadFreezeCmd {
+	return &WhcCreatePayloadFreezeCmd{
+		ToAddress:  toAddress,
+		PropertyID: id,
+		Amount:     amount,
+	}
+}
+
+type WhcCreatePayloadUnFreezeCmd struct {
+	ToAddress  string
+	PropertyID int64
+	Amount     string
+}
+
+func NewWhcCreatePayloadUnFreezeCmd(toAddress string, id int64, amount string) *WhcCreatePayloadUnFreezeCmd {
+	return &WhcCreatePayloadUnFreezeCmd{
+		ToAddress:  toAddress,
+		PropertyID: id,
+		Amount:     amount,
+	}
+}
+
+type GetFrozenBalanceCmd struct {
+	Address  string
+	PropertyID int64
+}
+
+func NewWhcGetFrozenBalanceCmd(address string, id int64) *GetFrozenBalanceCmd {
+	return &GetFrozenBalanceCmd{
+		Address:  address,
+		PropertyID: id,
+	}
+}
+
+type WhcGetFrozenBalanceForIdCmd struct {
+	PropertyID int64
+}
+
+func NewWhcGetFrozenBalanceForIdCmd(id int64) *WhcGetFrozenBalanceForIdCmd {
+	return &WhcGetFrozenBalanceForIdCmd{
+		PropertyID: id,
+	}
+}
+
+
+type WhcGetFrozenBalanceForAddressCmd struct {
+	Address string
+}
+
+func NewWhcGetFrozenBalanceForAddressCmd(address string) *WhcGetFrozenBalanceForAddressCmd {
+	return &WhcGetFrozenBalanceForAddressCmd{
+		Address: address,
+	}
+}
+
 func init() {
 	// No special flags for commands in this file.
 	flags := UsageFlag(0)
@@ -803,4 +881,10 @@ func init() {
 	MustRegisterCmd("whc_sendrevoke", (*WhcSendRevokeCmd)(nil), flags)
 	MustRegisterCmd("whc_sendsto", (*WhcSendStoCmd)(nil), flags)
 	MustRegisterCmd("whc_sendfreeze", (*WhcFreezeCmd)(nil), flags)
+	MustRegisterCmd("whc_sendunfreeze", (*WhcUnFreezeCmd)(nil), flags)
+	MustRegisterCmd("whc_createpayload_freeze", (*WhcCreatePayloadFreezeCmd)(nil), flags)
+	MustRegisterCmd("whc_createpayload_unfreeze", (*WhcCreatePayloadUnFreezeCmd)(nil), flags)
+	MustRegisterCmd("whc_getfrozenbalance", (*GetFrozenBalanceCmd)(nil), flags)
+	MustRegisterCmd("whc_getfrozenbalanceforid", (*WhcGetFrozenBalanceForIdCmd)(nil), flags)
+	MustRegisterCmd("whc_getfrozenbalanceforaddress", (*WhcGetFrozenBalanceForAddressCmd)(nil), flags)
 }
