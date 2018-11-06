@@ -266,3 +266,10 @@ type SubSend struct {
 	Precision  string `json:"precision,omitempty"`
 	Amount     string `json:"amount,omitempty"`
 }
+
+type FrozenBalanceResult struct {
+	Frozen     *bool   `json:"frozen"`
+	Balance    string  `json:"balance"`
+	Address    *string `json:"address"`
+	PropertyID *int64  `json:"propertyid,omitempty"`
+}

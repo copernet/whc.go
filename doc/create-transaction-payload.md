@@ -302,3 +302,52 @@ client.WhcCreatePayloadSto(35, "23", nil)
 // result:
 000000000000002300000000000000e6
 ```
+---
+
+##### `WhcCreatePayloadFreeze`
+
+Creates the payload to freeze an address for a centrally managed token.
+
+##### Arguments
+
+- toaddress `string` ： the address to freeze tokens for
+- propertyid `int64` ： the property to freeze tokens for (must be managed type and have freezing option enabled)
+- amount `string ` ： the amount of tokens to freeze (note: this is unused - once frozen an address cannot send any transactions)
+
+##### Result
+
+`string`：the hex-encoded payload
+
+##### Examples
+
+```
+client. WhcCreatePayloadFreeze("bchreg:qzrck6dmz5lgs7v87dr5lp4g56aldg9knucnuqyl2g", 5, "1")
+
+// result:
+0000004600000022
+```
+
+---
+
+##### `WhcCreatePayloadUnFreeze`
+
+Creates the payload to unfreeze an address for a centrally managed token.
+
+##### Arguments
+
+- toaddress `string` ： the address to freeze tokens for
+- propertyid `int64` ： the property to freeze tokens for (must be managed type and have freezing option enabled)
+- amount `string ` ： the amount of tokens to freeze (note: this is unused - once frozen an address cannot send any transactions)
+
+##### Result
+
+`string`：the hex-encoded payload
+
+##### Examples
+
+```
+client. WhcCreatePayloadUnFreeze("bchreg:qzrck6dmz5lgs7v87dr5lp4g56aldg9knucnuqyl2g", 5, "1")
+
+// result:
+0000004600000022
+```

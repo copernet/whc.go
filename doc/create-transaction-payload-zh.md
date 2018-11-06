@@ -302,3 +302,53 @@ client.WhcCreatePayloadSto(35, "23", nil)
 // result:
 000000000000002300000000000000e6
 ```
+---
+
+##### `WhcCreatePayloadFreeze`
+
+冻结可管理资产
+
+##### 参数
+
+- toaddress `int64` ： token的拥有者地址
+- propertyid `int64` ： token的property ID(资产类型必须是管理资产且启动冻结选项)
+- amount `string ` ： 冻结数量（备注：该参数当前未启用）
+
+##### 返回值
+
+`string`：生成的wormhole 协议payload数据
+
+##### 示例
+
+```
+client. WhcCreatePayloadFreeze("bchreg:qzrck6dmz5lgs7v87dr5lp4g56aldg9knucnuqyl2g", 5, "1")
+
+// result:
+0000004600000022
+```
+
+---
+##### `WhcCreatePayloadUnFreeze `
+
+解冻可管理资产
+
+##### 参数
+
+- toaddress `int64` ： token的拥有者地址
+- propertyid `int64` ： token的property ID(资产类型必须是管理资产且启动冻结选项)
+- amount `string ` ： 冻结数量（备注：该参数当前未启用）
+
+##### 返回值
+
+`string`：生成的wormhole 协议payload数据
+
+##### 示例
+
+```
+client. WhcCreatePayloadUnFreeze("bchreg:qzrck6dmz5lgs7v87dr5lp4g56aldg9knucnuqyl2g", 5, "1")
+
+// result:
+0000004600000022
+```
+
+---

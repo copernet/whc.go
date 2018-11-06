@@ -496,14 +496,14 @@ func (r FutureWhcListTransactionsResult) Receive() ([]btcjson.GenerateTransactio
 }
 
 func (c *Client) WhcListTransactionsAsync(addr *string, count, skip, startblock,
-	endblock *int64) FutureWhcListTransactionsResult {
+endblock *int64) FutureWhcListTransactionsResult {
 
 	cmd := btcjson.NewWhcListTransactionsCmd(addr, count, skip, startblock, endblock)
 	return c.sendCmd(cmd)
 }
 
 func (c *Client) WhcListTransactions(addr *string, count, skip, startblock,
-	endblock *int64) ([]btcjson.GenerateTransactionResult, error) {
+endblock *int64) ([]btcjson.GenerateTransactionResult, error) {
 
 	return c.WhcListTransactionsAsync(addr, count, skip, startblock, endblock).Receive()
 }
@@ -632,8 +632,8 @@ func (r FutureWhcCreatePayloadIssuanceCrowdSaleResult) Receive() (string, error)
 }
 
 func (c *Client) WhcCreatePayloadIssuanceCrowdSaleAsync(eco, precision, preId, desiredID, deadline,
-	earlyBonus, issuerPercentage int64, category, subcategory, name, url, data string, tokensPreUnit,
-	amount string) FutureWhcCreatePayloadIssuanceCrowdSaleResult {
+earlyBonus, issuerPercentage int64, category, subcategory, name, url, data string, tokensPreUnit,
+amount string) FutureWhcCreatePayloadIssuanceCrowdSaleResult {
 
 	cmd := btcjson.NewWhcCreatePayloadIssuanceCrowdSaleCmd(eco, precision, preId, desiredID, deadline, earlyBonus,
 		issuerPercentage, category, subcategory, name, url, data, tokensPreUnit, amount)
@@ -642,8 +642,8 @@ func (c *Client) WhcCreatePayloadIssuanceCrowdSaleAsync(eco, precision, preId, d
 }
 
 func (c *Client) WhcCreatePayloadIssuanceCrowdSale(eco, precision, preId, desiredID, deadline, earlyBonus,
-	issuerPercentage int64, category, subcategory, name, url, data string, tokensPreUnit,
-	amount string) (string, error) {
+issuerPercentage int64, category, subcategory, name, url, data string, tokensPreUnit,
+amount string) (string, error) {
 
 	return c.WhcCreatePayloadIssuanceCrowdSaleAsync(eco, precision, preId, desiredID, deadline, earlyBonus,
 		issuerPercentage, category, subcategory, name, url, data, tokensPreUnit, amount).Receive()
@@ -667,7 +667,7 @@ func (r FutureWhcCreatePayloadIssuanceFixedResult) Receive() (string, error) {
 }
 
 func (c *Client) WhcCreatePayloadIssuanceFixedAsync(eco, precision, preId int64, category, subcategory,
-	name, url, data, amount string) FutureWhcCreatePayloadIssuanceFixedResult {
+name, url, data, amount string) FutureWhcCreatePayloadIssuanceFixedResult {
 
 	cmd := btcjson.NewWhcCreatePayloadIssuanceFixedCmd(eco, precision, preId, category, subcategory,
 		name, url, data, amount)
@@ -676,7 +676,7 @@ func (c *Client) WhcCreatePayloadIssuanceFixedAsync(eco, precision, preId int64,
 }
 
 func (c *Client) WhcCreatePayloadIssuanceFixed(eco, precision, preId int64, category, subcategory,
-	name, url, data, amount string) (string, error) {
+name, url, data, amount string) (string, error) {
 
 	return c.WhcCreatePayloadIssuanceFixedAsync(eco, precision, preId, category, subcategory, name,
 		url, data, amount).Receive()
@@ -700,7 +700,7 @@ func (r FutureWhcCreatePayloadIssuanceManagedResult) Receive() (string, error) {
 }
 
 func (c *Client) WhcCreatePayloadIssuanceManagedAsync(eco, precision, preId int64, category, subcategory,
-	name, url, data string) FutureWhcCreatePayloadIssuanceManagedResult {
+name, url, data string) FutureWhcCreatePayloadIssuanceManagedResult {
 
 	cmd := btcjson.NewWhcCreatePayloadIssuanceManagedCmd(eco, precision, preId, category, subcategory,
 		name, url, data)
@@ -709,7 +709,7 @@ func (c *Client) WhcCreatePayloadIssuanceManagedAsync(eco, precision, preId int6
 }
 
 func (c *Client) WhcCreatePayloadIssuanceManaged(eco, precision, preId int64, category, subcategory,
-	name, url, data string) (string, error) {
+name, url, data string) (string, error) {
 
 	return c.WhcCreatePayloadIssuanceManagedAsync(eco, precision, preId, category, subcategory,
 		name, url, data).Receive()
@@ -1033,14 +1033,14 @@ func (r FutureWhcPartiCrowdSaleResult) Receive() (string, error) {
 }
 
 func (c *Client) WhcPartiCrowdSaleAsync(from, to, amount string, redeemAddress,
-	referenceAmount *string) FutureWhcPartiCrowdSaleResult {
+referenceAmount *string) FutureWhcPartiCrowdSaleResult {
 
 	cmd := btcjson.NewWhcPartiCrowdSaleCmd(from, to, amount, redeemAddress, referenceAmount)
 	return c.sendCmd(cmd)
 }
 
 func (c *Client) WhcPartiCrowdSale(from, to, amount string, redeemAddress,
-	referenceAmount *string) (string, error) {
+referenceAmount *string) (string, error) {
 
 	return c.WhcPartiCrowdSaleAsync(from, to, amount, redeemAddress, referenceAmount).Receive()
 }
@@ -1063,14 +1063,14 @@ func (r FutureWhcSendResult) Receive() (string, error) {
 }
 
 func (c *Client) WhcSendAsync(from, to string, id uint64, amount string, redeem,
-	referenceAmount *string) FutureWhcSendResult {
+referenceAmount *string) FutureWhcSendResult {
 
 	cmd := btcjson.NewWhcSendCmd(from, to, id, amount, redeem, referenceAmount)
 	return c.sendCmd(cmd)
 }
 
 func (c *Client) WhcSend(from, to string, id uint64, amount string, redeem,
-	referenceAmount *string) (string, error) {
+referenceAmount *string) (string, error) {
 
 	return c.WhcSendAsync(from, to, id, amount, redeem, referenceAmount).Receive()
 }
@@ -1093,14 +1093,14 @@ func (r FutureWhcSendAllResult) Receive() (string, error) {
 }
 
 func (c *Client) WhcSendAllAsync(from, to string, eco int64, redeem,
-	referenceAmount *string) FutureWhcSendAllResult {
+referenceAmount *string) FutureWhcSendAllResult {
 
 	cmd := btcjson.NewWhcSendAllCmd(from, to, eco, redeem, referenceAmount)
 	return c.sendCmd(cmd)
 }
 
 func (c *Client) WhcSendAll(from, to string, eco int64, redeem,
-	referenceAmount *string) (string, error) {
+referenceAmount *string) (string, error) {
 
 	return c.WhcSendAllAsync(from, to, eco, redeem, referenceAmount).Receive()
 }
@@ -1205,8 +1205,8 @@ func (r FutureWhcSendIssuanceCrowdSaleResult) Receive() (string, error) {
 }
 
 func (c *Client) WhcSendIssuanceCrowdSaleAsync(from string, eco, precision, previousid int64, category,
-	subCategory, name, url, data string, desiredID int64, tokensPerUnit string, deadline,
-	earlyBonus, issuerPercentage int64, amount string) FutureWhcSendIssuanceCrowdSaleResult {
+subCategory, name, url, data string, desiredID int64, tokensPerUnit string, deadline,
+earlyBonus, issuerPercentage int64, amount string) FutureWhcSendIssuanceCrowdSaleResult {
 
 	cmd := btcjson.NewWhcSendIssuanceCrowdSaleCmd(from, eco, precision, previousid, category, subCategory,
 		name, url, data, deadline, tokensPerUnit, deadline, earlyBonus, issuerPercentage, amount)
@@ -1214,8 +1214,8 @@ func (c *Client) WhcSendIssuanceCrowdSaleAsync(from string, eco, precision, prev
 }
 
 func (c *Client) WhcSendIssuanceCrowdSale(from string, eco, precision, previousid int64, category,
-	subCategory, name, url, data string, desiredID int64, tokensPerUnit string, deadline,
-	earlyBonus, issuerPercentage int64, amount string) (string, error) {
+subCategory, name, url, data string, desiredID int64, tokensPerUnit string, deadline,
+earlyBonus, issuerPercentage int64, amount string) (string, error) {
 
 	return c.WhcSendIssuanceCrowdSaleAsync(from, eco, precision, previousid, category, subCategory,
 		name, url, data, deadline, tokensPerUnit, deadline, earlyBonus, issuerPercentage, amount).Receive()
@@ -1239,7 +1239,7 @@ func (r FutureWhcSendIssuanceFixedResult) Receive() (string, error) {
 }
 
 func (c *Client) WhcSendIssuanceFixedAsync(from string, eco, precision, previousid int64, category,
-	subCategory, name, url, data, total string) FutureWhcSendIssuanceFixedResult {
+subCategory, name, url, data, total string) FutureWhcSendIssuanceFixedResult {
 
 	cmd := btcjson.NewWhcSendIssuanceFixedCmd(from, eco, precision, previousid, category, subCategory,
 		name, url, data, total)
@@ -1247,7 +1247,7 @@ func (c *Client) WhcSendIssuanceFixedAsync(from string, eco, precision, previous
 }
 
 func (c *Client) WhcSendIssuanceFixed(from string, eco, precision, previousid int64, category,
-	subCategory, name, url, data, total string) (string, error) {
+subCategory, name, url, data, total string) (string, error) {
 
 	return c.WhcSendIssuanceFixedAsync(from, eco, precision, previousid, category, subCategory,
 		name, url, data, total).Receive()
@@ -1271,7 +1271,7 @@ func (r FutureWhcSendIssuanceManagedResult) Receive() (string, error) {
 }
 
 func (c *Client) WhcSendIssuanceManagedAsync(from string, eco, precision, previousid int64, category,
-	subCategory, name, url, data string) FutureWhcSendIssuanceManagedResult {
+subCategory, name, url, data string) FutureWhcSendIssuanceManagedResult {
 
 	cmd := btcjson.NewWhcSendIssuanceManagedCmd(from, eco, precision, previousid, category, subCategory,
 		name, url, data)
@@ -1279,7 +1279,7 @@ func (c *Client) WhcSendIssuanceManagedAsync(from string, eco, precision, previo
 }
 
 func (c *Client) WhcSendIssuanceManaged(from string, eco, precision, previousid int64, category,
-	subCategory, name, url, data string) (string, error) {
+subCategory, name, url, data string) (string, error) {
 
 	return c.WhcSendIssuanceManagedAsync(from, eco, precision, previousid, category, subCategory,
 		name, url, data).Receive()
@@ -1303,14 +1303,14 @@ func (r FutureWhcSendRawTxResult) Receive() (string, error) {
 }
 
 func (c *Client) WhcSendRawTxAsync(from, rawtx string, referenceAddress, redeem,
-	referenceAmount *string) FutureWhcSendRawTxResult {
+referenceAmount *string) FutureWhcSendRawTxResult {
 
 	cmd := btcjson.NewWhcSendRawTxCmd(from, rawtx, referenceAddress, redeem, referenceAmount)
 	return c.sendCmd(cmd)
 }
 
 func (c *Client) WhcSendRawTx(from, rawtx string, referenceAddress, redeem,
-	referenceAmount *string) (string, error) {
+referenceAmount *string) (string, error) {
 
 	return c.WhcSendRawTxAsync(from, rawtx, referenceAddress, redeem, referenceAmount).Receive()
 }
@@ -1371,4 +1371,169 @@ func (c *Client) WhcSendSto(from string, id int64, amount string, redeem *string
 	distributionProperty *int64) (string, error) {
 
 	return c.WhcSendStoAsync(from, id, amount, redeem, distributionProperty).Receive()
+}
+
+func (c *Client) WhcSendFreeze(fromAddress string, id int64, amount string, frozenAddress string) (string, error) {
+	return c.WhcSendFreezeAsync(fromAddress, id, amount, frozenAddress).Receive()
+}
+
+func (c *Client) WhcSendFreezeAsync(fromAddress string, id int64, amount string, frozenAddress string) FutureWhcSendFreezeResult {
+	cmd := btcjson.NewWhcSendFreezeCmd(fromAddress, id, amount, frozenAddress)
+	return c.sendCmd(cmd)
+}
+
+type FutureWhcSendFreezeResult chan *response
+
+func (r FutureWhcSendFreezeResult) Receive() (string, error) {
+	res, err := receiveFuture(r)
+	if err != nil {
+		return "", err
+	}
+
+	var txid string
+	err = json.Unmarshal(res, &txid)
+	if err != nil {
+		return "", err
+	}
+
+	return txid, nil
+}
+
+type FutureWhcCreatePayloadFreezeResult chan *response
+
+func (r FutureWhcCreatePayloadFreezeResult) Receive() (string, error) {
+	res, err := receiveFuture(r)
+	if err != nil {
+		return "", err
+	}
+
+	var result string
+	err = json.Unmarshal(res, &result)
+	if err != nil {
+		return "", err
+	}
+
+	return result, nil
+}
+
+func (c *Client) WhcCreatePayloadFreezeAsync(toAddress string, id int64, amount string) FutureWhcCreatePayloadFreezeResult {
+	cmd := btcjson.NewWhcCreatePayloadFreezeCmd(toAddress, id, amount)
+	return c.sendCmd(cmd)
+}
+
+func (c *Client) WhcCreatePayloadFreeze(toAddress string, id int64, amount string) (string, error) {
+	return c.WhcCreatePayloadFreezeAsync(toAddress, id, amount).Receive()
+}
+
+type FutureWhcCreatePayloadUnFreezeResult chan *response
+
+func (r FutureWhcCreatePayloadUnFreezeResult) Receive() (string, error) {
+	res, err := receiveFuture(r)
+	if err != nil {
+		return "", err
+	}
+
+	var result string
+	err = json.Unmarshal(res, &result)
+	if err != nil {
+		return "", err
+	}
+
+	return result, nil
+}
+
+func (c *Client) WhcCreatePayloadUnFreezeAsync(toAddress string, id int64, amount string) FutureWhcCreatePayloadUnFreezeResult {
+	cmd := btcjson.NewWhcCreatePayloadUnFreezeCmd(toAddress, id, amount)
+	return c.sendCmd(cmd)
+}
+
+func (c *Client) WhcCreatePayloadUnFreeze(toAddress string, id int64, amount string) (string, error) {
+	return c.WhcCreatePayloadUnFreezeAsync(toAddress, id, amount).Receive()
+}
+
+type FutureWhcGetFrozenBalanceResult chan *response
+
+func (r FutureWhcGetFrozenBalanceResult) Receive() (*btcjson.FrozenBalanceResult, error) {
+	res, err := receiveFuture(r)
+	if err != nil {
+		return nil, err
+	}
+
+	var result btcjson.FrozenBalanceResult
+	err = json.Unmarshal(res, &result)
+	if err != nil {
+		return nil, err
+	}
+
+	return &result, nil
+}
+
+func (c *Client) WhcGetFrozenBalanceAsync(address string, id int64) FutureWhcGetFrozenBalanceResult {
+	cmd := btcjson.NewWhcGetFrozenBalanceCmd(address, id)
+	return c.sendCmd(cmd)
+}
+
+func (c *Client) WhcGetFrozenBalance(address string, id int64) (*btcjson.FrozenBalanceResult, error) {
+	return c.WhcGetFrozenBalanceAsync(address, id).Receive()
+}
+
+type FutureWhcGetFrozenBalanceForIdResult chan *response
+
+func (r FutureWhcGetFrozenBalanceForIdResult) Receive() (*[]btcjson.FrozenBalanceResult, error) {
+	res, err := receiveFuture(r)
+	if err != nil {
+		return nil, err
+	}
+
+	var result []btcjson.FrozenBalanceResult
+	err = json.Unmarshal(res, &result)
+	if err != nil {
+		return nil, err
+	}
+
+	return &result, nil
+}
+
+func (c *Client) WhcGetFrozenBalanceForIdAsync(id int64) FutureWhcGetFrozenBalanceForIdResult {
+	cmd := btcjson.NewWhcGetFrozenBalanceForIdCmd(id)
+	return c.sendCmd(cmd)
+}
+
+func (c *Client) WhcGetFrozenBalanceForId(id int64) (*[]btcjson.FrozenBalanceResult, error) {
+	return c.WhcGetFrozenBalanceForIdAsync(id).Receive()
+}
+
+type FutureWhcGetFrozenBalanceForAddressResult chan *response
+
+func (r FutureWhcGetFrozenBalanceForAddressResult) Receive() (*[]btcjson.FrozenBalanceResult, error) {
+	res, err := receiveFuture(r)
+	if err != nil {
+		return nil, err
+	}
+
+	var result []btcjson.FrozenBalanceResult
+	err = json.Unmarshal(res, &result)
+	if err != nil {
+		return nil, err
+	}
+
+	return &result, nil
+}
+
+func (c *Client) WhcGetFrozenBalanceForAddressAsync(address string) FutureWhcGetFrozenBalanceForAddressResult {
+	cmd := btcjson.NewWhcGetFrozenBalanceForAddressCmd(address)
+	return c.sendCmd(cmd)
+}
+
+func (c *Client) WhcGetFrozenBalanceForAddress(address string) (*[]btcjson.FrozenBalanceResult, error) {
+	return c.WhcGetFrozenBalanceForAddressAsync(address).Receive()
+}
+
+func (c *Client) WhcSendUnFreeze(fromAddress string, id int64, amount string, frozenAddress string) (string, error) {
+	return c.WhcSendUnFreezeAsync(fromAddress, id, amount, frozenAddress).Receive()
+}
+
+func (c *Client) WhcSendUnFreezeAsync(fromAddress string, id int64, amount string, frozenAddress string) FutureWhcSendFreezeResult {
+	cmd := btcjson.NewWhcSendUnFreezeCmd(fromAddress, id, amount, frozenAddress)
+	return c.sendCmd(cmd)
 }
