@@ -259,7 +259,7 @@ type WhcCreatePayloadIssuanceCrowdSaleCmd struct {
 }
 
 func NewWhcCreatePayloadIssuanceCrowdSaleCmd(eco, precision, preId, desiredID, deadline, earlyBonus,
-	issuerPercentage int64, category, subcategory, name, url, data string, tokensPreUnit, amount string) *WhcCreatePayloadIssuanceCrowdSaleCmd {
+issuerPercentage int64, category, subcategory, name, url, data string, tokensPreUnit, amount string) *WhcCreatePayloadIssuanceCrowdSaleCmd {
 	return &WhcCreatePayloadIssuanceCrowdSaleCmd{
 		Ecosystem:         eco,
 		Precision:         precision,
@@ -291,7 +291,7 @@ type WhcCreatePayloadIssuanceFixedCmd struct {
 }
 
 func NewWhcCreatePayloadIssuanceFixedCmd(eco, precision, preId int64, category, subcategory,
-	name, url, data, amount string) *WhcCreatePayloadIssuanceFixedCmd {
+name, url, data, amount string) *WhcCreatePayloadIssuanceFixedCmd {
 	return &WhcCreatePayloadIssuanceFixedCmd{
 		Ecosystem:   eco,
 		Precision:   precision,
@@ -317,7 +317,7 @@ type WhcCreatePayloadIssuanceManagedCmd struct {
 }
 
 func NewWhcCreatePayloadIssuanceManagedCmd(eco, precision, preId int64, category, subcategory,
-	name, url, data string) *WhcCreatePayloadIssuanceManagedCmd {
+name, url, data string) *WhcCreatePayloadIssuanceManagedCmd {
 
 	return &WhcCreatePayloadIssuanceManagedCmd{
 		Ecosystem:   eco,
@@ -601,8 +601,8 @@ type WhcSendIssuanceCrowdSaleCmd struct {
 }
 
 func NewWhcSendIssuanceCrowdSaleCmd(from string, eco, precision, previousid int64, category,
-	subCategory, name, url, data string, desiredID int64, tokensPerUnit string, deadline,
-	earlyBonus, issuerPercentage int64, amount string) *WhcSendIssuanceCrowdSaleCmd {
+subCategory, name, url, data string, desiredID int64, tokensPerUnit string, deadline,
+earlyBonus, issuerPercentage int64, amount string) *WhcSendIssuanceCrowdSaleCmd {
 
 	return &WhcSendIssuanceCrowdSaleCmd{
 		FromAddress:       from,
@@ -637,7 +637,7 @@ type WhcSendIssuanceFixedCmd struct {
 }
 
 func NewWhcSendIssuanceFixedCmd(from string, eco, precision, previousid int64, category,
-	subCategory, name, url, data, total string) *WhcSendIssuanceFixedCmd {
+subCategory, name, url, data, total string) *WhcSendIssuanceFixedCmd {
 
 	return &WhcSendIssuanceFixedCmd{
 		FromAddress: from,
@@ -666,7 +666,7 @@ type WhcSendIssuanceManagedCmd struct {
 }
 
 func NewWhcSendIssuanceManagedCmd(from string, eco, precision, previousid int64, category,
-	subCategory, name, url, data string) *WhcSendIssuanceManagedCmd {
+subCategory, name, url, data string) *WhcSendIssuanceManagedCmd {
 
 	return &WhcSendIssuanceManagedCmd{
 		FromAddress: from,
@@ -733,6 +733,22 @@ func NewWhcSendStoCmd(from string, id int64, amount string, redeem *string, dist
 	}
 }
 
+type WhcFreezeCmd struct {
+	FromAddress   string
+	PropertyID    int64
+	Amount        string
+	FrozenAddress string
+}
+
+func NewWhcSendFreezeCmd(from string, id int64, amount string, frozenAddress string) *WhcFreezeCmd {
+	return &WhcFreezeCmd{
+		FromAddress:   from,
+		PropertyID:    id,
+		Amount:        amount,
+		FrozenAddress: frozenAddress,
+	}
+}
+
 func init() {
 	// No special flags for commands in this file.
 	flags := UsageFlag(0)
@@ -786,4 +802,5 @@ func init() {
 	MustRegisterCmd("whc_sendrawtx", (*WhcSendRawTxCmd)(nil), flags)
 	MustRegisterCmd("whc_sendrevoke", (*WhcSendRevokeCmd)(nil), flags)
 	MustRegisterCmd("whc_sendsto", (*WhcSendStoCmd)(nil), flags)
+	MustRegisterCmd("whc_sendfreeze", (*WhcFreezeCmd)(nil), flags)
 }
