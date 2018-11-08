@@ -254,6 +254,7 @@ type GenerateTransactionResult struct {
 	TokensPerUnit     string `json:"tokensperunit,omitempty"`
 	Deadline          int64  `json:"deadline,omitempty"`
 	EarlyBonus        uint8  `json:"earlybonus,omitempty"`
+	FeeRate *decimal.Decimal `json:"fee_rate"`
 }
 
 type Recipient struct {
