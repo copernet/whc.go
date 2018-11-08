@@ -6,6 +6,7 @@ package btcjson
 
 import (
 	"encoding/json"
+	"github.com/shopspring/decimal"
 	"strconv"
 )
 
