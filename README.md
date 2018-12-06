@@ -5,7 +5,7 @@ whc.go is a SDK servicing for wormhole protocol written in golang. It is signifi
 ### Requirements:
 
 - wormhole client [Earth-0.2.2](https://github.com/copernet/wormhole/releases/tag/v0.2.2).
-- [Go](http://golang.org/) 1.8 or newer required.
+- [Go](http://golang.org/) 1.11 or newer required.
 
 ### Documents:
 
