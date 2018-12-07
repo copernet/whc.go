@@ -1015,7 +1015,7 @@ type FutureGetAddressesByAccountResult chan *response
 
 // Receive waits for the response promised by the future and returns the list of
 // addresses associated with the passed account.
-func (r FutureGetAddressesByAccountResult) Receive() ([]cashutil.Address, error) {
+func (r FutureGetAddressesByAccountResult) Receive() ([]string, error) {
 	res, err := receiveFuture(r)
 	if err != nil {
 		return nil, err
@@ -1027,18 +1027,19 @@ func (r FutureGetAddressesByAccountResult) Receive() ([]cashutil.Address, error)
 	if err != nil {
 		return nil, err
 	}
-
-	addrs := make([]cashutil.Address, 0, len(addrStrings))
-	for _, addrStr := range addrStrings {
-		addr, err := cashutil.DecodeAddress(addrStr,
-			&chaincfg.MainNetParams)
-		if err != nil {
-			return nil, err
-		}
-		addrs = append(addrs, addr)
-	}
-
-	return addrs, nil
+	return addrStrings, nil
+	//addrs := make([]cashutil.Address, 0, len(addrStrings))
+	//for _, addrStr := range addrStrings {
+	//	addr, err := cashutil.DecodeAddress(addrStr,
+	//		&chaincfg.MainNetParams)
+	//	if err != nil {
+	//		return nil, err
+	//	}
+	//	fmt.Println(addr)
+	//	addrs = append(addrs, addr)
+	//}
+	//
+	//return addrs, nil
 }
 
 // GetAddressesByAccountAsync returns an instance of a type that can be used to
@@ -1053,7 +1054,7 @@ func (c *Client) GetAddressesByAccountAsync(account string) FutureGetAddressesBy
 
 // GetAddressesByAccount returns the list of addresses associated with the
 // passed account.
-func (c *Client) GetAddressesByAccount(account string) ([]cashutil.Address, error) {
+func (c *Client) GetAddressesByAccount(account string) ([]string, error) {
 	return c.GetAddressesByAccountAsync(account).Receive()
 }
 
