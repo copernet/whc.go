@@ -27,19 +27,21 @@ func getClient() *rpcclient.Client {
 func main() {
 	c := getClient()
 
-	res, err := c.WhcSendUnFreeze("bchreg:qzrck6dmz5lgs7v87dr5lp4g56aldg9knucnuqyl2g", 5, "1", "bchreg:qzuy3es55tygnmmeydh5uqc39sfkke6hlqf2dv26h0")
-	fmt.Println(res)
-	fmt.Println(err)
-
-	balance, err := c.WhcGetFrozenBalance("qzuy3es55tygnmmeydh5uqc39sfkke6hlqf2dv26h0", 5)
-	fmt.Println(err)
-	fmt.Println(balance)
-
-	balances ,err :=c.WhcGetFrozenBalanceForId(5)
-	fmt.Println(err)
-	fmt.Println(balances)
-
+	//res, err := c.WhcSendUnFreeze("bchreg:qzrck6dmz5lgs7v87dr5lp4g56aldg9knucnuqyl2g", 5, "1", "bchreg:qzuy3es55tygnmmeydh5uqc39sfkke6hlqf2dv26h0")
+	//fmt.Println(res)
+	//fmt.Println(err)
+	//
+	//balance, err := c.WhcGetFrozenBalance("qzuy3es55tygnmmeydh5uqc39sfkke6hlqf2dv26h0", 5)
+	//fmt.Println(err)
+	//fmt.Println(balance)
+	//
+	//balances ,err :=c.WhcGetFrozenBalanceForId(5)
+	//fmt.Println(err)
+	//fmt.Println(balances)
+	//
 	list,err :=c.WhcGetFrozenBalanceForAddress("qzuy3es55tygnmmeydh5uqc39sfkke6hlqf2dv26h0")
 	fmt.Println(err)
 	fmt.Println(list)
+
+
 }

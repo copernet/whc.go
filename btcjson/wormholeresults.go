@@ -275,3 +275,52 @@ type FrozenBalanceResult struct {
 	Address    *string `json:"address"`
 	PropertyID *int64  `json:"propertyid,omitempty"`
 }
+
+type ERC721AddressTokensResult struct {
+	TokenId   string 		`json:"tokenid"`
+	Attribute string        `json:"attribute"`
+	TokenUrl  string 		`json:"tokenurl"`
+	Txid      string  		`json:"creationtxid"`
+}
+
+type  OwnerOfERC721TokenResult struct {
+	Own   bool     `json:"own"`
+}
+
+type WhcListERC721PropertyTokensResult struct {
+	TokenId   string     `json:"tokenid"`
+	Owner     string    `json:"owner"`
+}
+
+type WhcGetERC721PropertyNewsResult struct {
+	PropertyId	  				string			`json:"propertyid"`
+	Owner    	  				string   	 	`json:"owner"`
+	CreationTxid  				string 			`json:"creationtxid"`
+	CreationBlock 				string   		`json:"creationblock"`
+	Attribute     				string 			`json:"attribute"`
+	TokenUrl	  				string  		`json:"tokenurl"`
+	Name    	  				string     		`json:"name"`
+	Symbol					  	string		 	`json:"symbol"`
+	Data   		  				string    	 	`json:"data"`
+	PropertyUrl 			    string			`json:"propertyurl"`
+	TotalTokenNumber  			int 	 	 	`json:"totalTokenNumber"`
+	HaveIssuedNumber  			int  		    `json:"haveIssuedNumber"`
+	CurrentValidIssuedNumer     int 			`json:"currentValidIssuedNumer"`
+}
+
+type WhcGetERC721TokenNewsResult struct {
+	PropertyId	  string		`json:"propertyid"`
+	TokenId  	  string     `json:"tokenid"`
+	Owner    	  string    `json:"owner"`
+	CreationTxid  string 	`json:"creationtxid"`
+	CreationBlock string   	`json:"creationblock"`
+	Attribute     string 	`json:"attribute"`
+	TokenUrl	  string  	`json:"tokenurl"`
+}
+
+type WhcGetERC721PropertyDestoryTokensResult struct {
+	TokenId  	 int64     `json:"tokenid"`
+	Attribute     string 	`json:"attribute"`
+	TokenUrl	  string  	`json:"tokenurl"`
+	CreationTxid  string 	`json:"creationtxid"`
+}

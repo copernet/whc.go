@@ -351,3 +351,100 @@ client. WhcCreatePayloadUnFreeze("bchreg:qzrck6dmz5lgs7v87dr5lp4g56aldg9knucnuqy
 // result:
 0000004600000022
 ```
+##### `whc_createpayload_destroyERC721token`
+
+Creates the payload to destroy ERC721 token
+
+**Arguments**
+
+- propertyId `string`The token within the property that will be destroy 
+- tokenId`string`The tokenid that will be destroy
+
+**Result**
+
+- `hash`the hex-encoded transaction hash
+
+**Examples**
+
+```go
+//request
+rpc.NewRPCInstance().WhcGetERC721PropertyDestoryTokens("9")
+
+//result
+000000090407000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000
+```
+
+##### `whc_createpayload_issueERC721property`
+
+Creates the payload to issue ERC721 property.
+
+**Argument**
+
+- name `string` required:the name of created property 
+- symbol`string`required:the symbol of created property 
+- data`string`required:the Data of created property
+- url`string`required:the URL of created property 
+- totalNumber`string`required:the number of token that created property will issued in the future
+
+**Result**
+
+- `payload`the hex-encoded payload
+
+**Examples**
+
+```go
+//request
+rpc.NewRPCInstance().WhcCreatePayloadIssueERC721Property("payload1","pp","data","url","5")
+//result
+00000009017061796c6f61643100707000646174610075726c000000000000000005
+```
+
+##### `whc_createpayload_issueERC721token`
+
+Creates the payload to issue ERC721 token.
+
+**Argument**
+
+- propertyId `string` required:The ID of the special property that will be issued token
+- tokenId`string`required:The tokenID that will be issued
+- tokenAttributes`string`required:The Attributes of the new created token
+- tokenURL`string`required:The URL of the new created token
+
+**Result**
+
+- `payload` the hex-encoded payload
+
+**Examples**
+
+```go
+//request
+rpc.NewRPCInstance().WhcCreatePayloadIssueERC721Token("6","6","0000E","SDF")
+
+//result
+0000000902060000000000000000000000000000000000000000000000000000000000000006000000000000000000000000000000000000000000000000000000000000000e0000000000000000000000000000000000000000000000000000000000000053444600
+```
+
+##### `whc_createpayload_transferERC721token`
+
+Creates the payload to transfer  ERC721 token.
+
+**Arguments**
+
+- propertyId `string`required:The propertyid within the token that will be transfer
+- tokenId`string`required:The tokenid that will be transfer
+
+**Result**
+
+- `hash`the hex-encoded transaction hash
+
+**Examples**
+
+```go
+//request
+rpc.NewRPCInstance().WhcCreatePayloadTransferERC721Token("7","1")
+
+//result
+000000090307000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000
+```
+
+##### 

@@ -6,7 +6,6 @@ package rpcclient
 
 import (
 	"encoding/json"
-
 	"github.com/copernet/whc.go/btcjson"
 )
 
@@ -1537,3 +1536,388 @@ func (c *Client) WhcSendUnFreezeAsync(fromAddress string, id int64, amount strin
 	cmd := btcjson.NewWhcSendUnFreezeCmd(fromAddress, id, amount, frozenAddress)
 	return c.sendCmd(cmd)
 }
+
+//whc_getERC721AddressTokens
+type  FutureWhcGetERC721AddressTokensResult chan *response
+
+func (r FutureWhcGetERC721AddressTokensResult) Receive() (*[]btcjson.ERC721AddressTokensResult, error){
+	res, err := receiveFuture(r)
+	if err != nil {
+		return nil, err
+	}
+
+	var result []btcjson.ERC721AddressTokensResult
+	err = json.Unmarshal(res, &result)
+	if err != nil {
+		return nil, err
+	}
+
+	return &result, nil
+}
+
+func (c *Client) WhcGetERC721AddressTokensAsync(address string,id string) FutureWhcGetERC721AddressTokensResult {
+	cmd := btcjson.NewWhcGetERC721AddressTokensCmd(address,id)
+	return c.sendCmd(cmd)
+}
+
+func (c *Client) WhcGetERC721AddressTokens(address string,id string) (*[]btcjson.ERC721AddressTokensResult, error) {
+	return c.WhcGetERC721AddressTokensAsync(address,id).Receive()
+}
+
+//whc_ownerOfERC721Token
+type FutureWhcOwnerOfERC721TokenResult chan *response
+
+func (r FutureWhcOwnerOfERC721TokenResult) Receive() (*btcjson.OwnerOfERC721TokenResult, error){
+	res, err := receiveFuture(r)
+	if err != nil {
+		return nil, err
+	}
+
+	var result btcjson.OwnerOfERC721TokenResult
+	err = json.Unmarshal(res, &result)
+	if err != nil {
+		return nil, err
+	}
+
+	return &result, nil
+}
+
+func (c *Client) WhcOwnerOfERC721TokenAsync(propertyId, tokenId string,address string) FutureWhcOwnerOfERC721TokenResult {
+	cmd := btcjson.NewWhcOwnerOfERC721TokenCmd(propertyId, tokenId,address)
+	return c.sendCmd(cmd)
+}
+
+func (c * Client) WhcOwnerOfERC721Token( propertyId, tokenId string,address string) (*btcjson.OwnerOfERC721TokenResult, error) {
+	return c.WhcOwnerOfERC721TokenAsync(propertyId,tokenId,address,).Receive()
+}
+
+
+//whc_listERC721PropertyTokens
+type FutureWhcListERC721PropertyTokensResult chan *response
+
+func (r FutureWhcListERC721PropertyTokensResult) Receive() ( * []btcjson.WhcListERC721PropertyTokensResult, error) {
+	res, err := receiveFuture(r)
+	if err != nil {
+		return nil, err
+	}
+
+	var result []btcjson.WhcListERC721PropertyTokensResult
+	err = json.Unmarshal(res, &result)
+	if err != nil {
+		return nil, err
+	}
+
+	return &result, nil
+}
+
+func (c *Client) WhcListERC721PropertyTokensAnsyc(propertyID string) FutureWhcListERC721PropertyTokensResult{
+	cmd := btcjson.NewWhcListERC721PropertyTokensCmd(propertyID)
+	return c.sendCmd(cmd)
+}
+
+func (c *Client) WhcListERC721PropertyTokens (propertyId string) (*[]btcjson.WhcListERC721PropertyTokensResult, error){
+	return c.WhcListERC721PropertyTokensAnsyc(propertyId).Receive()
+}
+
+//whc_getERC721PropertyNews
+
+type FutureWhcGetERC721PropertyNewsResult chan *response
+
+func (r FutureWhcGetERC721PropertyNewsResult) Receive() (*btcjson.WhcGetERC721PropertyNewsResult,error) {
+	res, err := receiveFuture(r)
+	if err != nil {
+		return nil, err
+	}
+
+	var result btcjson.WhcGetERC721PropertyNewsResult
+	err = json.Unmarshal(res, &result)
+	if err != nil {
+		return nil, err
+	}
+
+	return &result, nil
+
+}
+
+func (c *Client)  WhcGetERC721PropertyNewsAnsyc(propertyId string) FutureWhcGetERC721PropertyNewsResult{
+	cmd :=btcjson.NewWhcGetERC721PropertyNewsCmd(propertyId)
+	return c.sendCmd(cmd)
+}
+
+func (c *Client) WhcGetERC721PropertyNews(propertyId string) (*btcjson.WhcGetERC721PropertyNewsResult, error){
+	return c.WhcGetERC721PropertyNewsAnsyc(propertyId).Receive()
+}
+
+//whc_getERC721TokenNews
+type FetureWhcGetERC721TokenNewsResult chan *response
+
+func (r FetureWhcGetERC721TokenNewsResult) Receive() (* btcjson.WhcGetERC721TokenNewsResult, error){
+	res, err := receiveFuture(r)
+	if err != nil {
+		return nil, err
+	}
+
+	var result btcjson.WhcGetERC721TokenNewsResult
+	err = json.Unmarshal(res, &result)
+
+	if err != nil{
+		return nil, err
+	}
+
+	return &result, nil
+}
+
+func (c *Client) WhcGetERC721TokenNewsAsync(propertyId, tokenId string) FetureWhcGetERC721TokenNewsResult{
+	cmd := btcjson.NewWhcGetERC721TokenNewsCmd(propertyId,tokenId)
+	return c.sendCmd(cmd)
+}
+
+func (c * Client) WhcGetERC721TokenNews(propertyId, tokenId string) (* btcjson.WhcGetERC721TokenNewsResult, error){
+	return c.WhcGetERC721TokenNewsAsync(propertyId, tokenId).Receive()
+}
+//whc_issuanceERC721property
+type FetureWhcIssuanceERC721PropertyResult chan* response
+
+func (r FetureWhcIssuanceERC721PropertyResult) Receive() (string, error) {
+	res, err := receiveFuture(r)
+	if err != nil {
+		return "", err
+	}
+	var result string
+	err = json.Unmarshal(res,&result)
+	if err != nil {
+		return "",err
+	}
+
+	return result, nil
+}
+
+func (c *Client) WhcIssuanceERC721PropertyAsync(issueAddress, name, symbol, data, url, totalNumber string) FetureWhcIssuanceERC721PropertyResult{
+	cmd := btcjson.NewWhcIssuanceERC721PropertyCmd(issueAddress, name, symbol, data,url,totalNumber)
+	return c.sendCmd(cmd)
+}
+
+func (c *Client) WhcIssuanceERC721Property (issueAddress, name, symbol, data, url,totalNumber string) (string, error){
+	return c.WhcIssuanceERC721PropertyAsync(issueAddress, name, symbol, data, url,totalNumber).Receive()
+}
+
+//whc_transferERC721Token
+type FetureWhcTransferERC721TokenResult chan *response
+
+func (r FetureWhcTransferERC721TokenResult)Receive() (string, error){
+	res, err := receiveFuture(r)
+	if err != nil {
+		return "", err
+	}
+
+	var result string
+	err = json.Unmarshal(res, &result)
+	if err != nil {
+		return "", err
+	}
+
+	return result, nil
+}
+
+
+func (c *Client) WhcTransferERC721TokenAsync (ownerAddress, receiveAddress string, propertyId, tokenId  string) FetureWhcTransferERC721TokenResult{
+	cmd := btcjson.NewWhcTransferERC721TokenCmd(ownerAddress, receiveAddress, propertyId, tokenId)
+	return c.sendCmd(cmd)
+}
+
+func (c *Client) WhcTransferERC721Token (ownerAddress, receiveAddress string, propertyId, tokenId  string) (string, error) {
+	return c.WhcTransferERC721TokenAsync(ownerAddress, receiveAddress, propertyId, tokenId).Receive()
+}
+
+
+//whc_destroyERC721Token
+type FetureWhcDestoryERC721TokenResult chan *response
+
+func (r FetureWhcDestoryERC721TokenResult) Receive() (string, error){
+	res, err := receiveFuture(r)
+	if err != nil {
+		return "", err
+	}
+
+	var result string
+	err = json.Unmarshal(res, &result)
+	if err != nil{
+		return "", err
+	}
+
+	return result, nil
+}
+
+func (c *Client) WhcDestoryERC721TokenAsync(ownerAddress string, propertyId,tokenId string) FetureWhcDestoryERC721TokenResult{
+	cmd := btcjson.NewWhcDestoryERC721TokenCmd(ownerAddress, propertyId, tokenId)
+	return c.sendCmd(cmd)
+}
+
+func (c *Client) WhcDestoryERC721Token(ownerAddress string, propertyId,tokenId string) (string, error) {
+	return c.WhcDestoryERC721TokenAsync(ownerAddress, propertyId, tokenId).Receive()
+}
+
+//whc_createpayload_issueERC721property
+type FetureWhcCreatePayloadIssueERC721PropertyResult chan *response
+
+func (r FetureWhcCreatePayloadIssueERC721PropertyResult)Receive() (string, error)  {
+	res, err := receiveFuture(r)
+	if err != nil {
+		return "", err
+	}
+
+	var result string
+	err = json.Unmarshal(res,&result)
+	if err != nil {
+		return "", err
+	}
+
+	return result, nil
+}
+
+func (c *Client) WhcCreatePayloadIssueERC721PropertyAsync(name, symbol, data, url ,total string) FetureWhcCreatePayloadIssueERC721PropertyResult{
+	cmd := btcjson.NewWhcCreatePayloadIssueERC721PropertyCmd(name, symbol, data, url,total)
+	return c.sendCmd(cmd)
+}
+
+func (c *Client) WhcCreatePayloadIssueERC721Property(name, symbol, data, url ,total string) (string, error){
+	return c.WhcCreatePayloadIssueERC721PropertyAsync(name, symbol, data, url, total).Receive()
+}
+
+//whc_createpayload_issueERC721token
+type FetureWhcCreatePayloadIssueERC721TokenResult chan *response
+
+func (r FetureWhcCreatePayloadIssueERC721TokenResult) Receive() (string, error) {
+	res, err := receiveFuture(r)
+	if err != nil {
+		return "", err
+	}
+
+	var result string
+	err = json.Unmarshal(res,&result)
+	if err != nil {
+		return "", err
+	}
+
+	return result, nil
+}
+
+func (c *Client) WhcCreatePayloadIssueERC721TokenAsync (propertyId, tokenId string, tokenAttributes, tokenUrl string) FetureWhcCreatePayloadIssueERC721TokenResult{
+	cmd := btcjson.NewWhcCreatePayloadIssueERC721TokenCmd(propertyId,tokenId,tokenAttributes,tokenUrl)
+	return c.sendCmd(cmd)
+}
+
+func (c *Client) WhcCreatePayloadIssueERC721Token(propertyId, tokenId string, tokenAttributes, tokenUrl string) (string, error){
+	return c.WhcCreatePayloadIssueERC721TokenAsync(propertyId,tokenId,tokenAttributes,tokenUrl).Receive()
+}
+
+//whc_createpayload_transferERC721token
+type FetureWhcCreatePayloadTransferERC721TokenResult chan *response
+
+func (r FetureWhcCreatePayloadTransferERC721TokenResult) Receive() (string, error) {
+	res, err := receiveFuture(r)
+	if err != nil {
+		return "" , err
+	}
+
+	var result string
+	err = json.Unmarshal(res, &result)
+	if err != nil {
+		return "", err
+	}
+
+	return result, nil
+}
+
+func (c *Client) WhcCreatePayloadTransferERC721TokenAsync (propertyId, tokenId string)FetureWhcCreatePayloadTransferERC721TokenResult{
+	cmd := btcjson.NewWhcCreatePayloadTransferERC721TokenCmd(propertyId, tokenId)
+	return c.sendCmd(cmd)
+}
+
+func (c *Client) WhcCreatePayloadTransferERC721Token(propertyId, tokenId string) (string, error){
+	return c.WhcCreatePayloadTransferERC721TokenAsync(propertyId, tokenId).Receive()
+}
+
+//whc_createpayload_destroyERC721token
+type FetureWhcCreatePayloadDestoryERC721TokenResult  chan *response
+
+func (r FetureWhcCreatePayloadDestoryERC721TokenResult) Receive() (string,error) {
+	res, err := receiveFuture(r)
+	if err != nil {
+		return "" , err
+	}
+
+	var result string
+	err = json.Unmarshal(res, &result)
+	if err != nil {
+		return "", err
+	}
+
+	return result, nil
+}
+
+
+func (c * Client) WhcCreatePayloadDestoryERC721TokenAsync(propertyId, tokenId string)FetureWhcCreatePayloadDestoryERC721TokenResult {
+	cmd := btcjson.NewWhcCreatePayloadDestoryERC721TokenCmd(propertyId, tokenId)
+	return c.sendCmd(cmd)
+}
+
+func (c * Client)WhcCreatePayloadDestoryERC721Token(propertyId, tokenId string) (string, error) {
+	return c.WhcCreatePayloadDestoryERC721TokenAsync(propertyId, tokenId).Receive()
+}
+
+////whc_getERC721PropertyDestroyTokens
+type FetureWhcGetERC721PropertyDestoryTokensResult chan *response
+
+func (r FetureWhcGetERC721PropertyDestoryTokensResult) Receive() (*[]btcjson.WhcGetERC721PropertyDestoryTokensCmd, error){
+	res, err := receiveFuture(r)
+	if err != nil {
+		return nil , err
+	}
+
+	var result []btcjson.WhcGetERC721PropertyDestoryTokensCmd
+	err = json.Unmarshal(res, &result)
+	if err != nil {
+		return nil, err
+	}
+
+	return &result, nil
+}
+
+func (c * Client) WhcGetERC721PropertyDestoryTokensAsync(propertyId string) FetureWhcGetERC721PropertyDestoryTokensResult {
+	cmd := btcjson.NewWhcGetERC721PropertyDestoryTokensCmd(propertyId)
+	return c.sendCmd(cmd)
+}
+
+func (c *Client) WhcGetERC721PropertyDestoryTokens(propertyId string) (*[]btcjson.WhcGetERC721PropertyDestoryTokensCmd, error){
+	return c.WhcGetERC721PropertyDestoryTokensAsync(propertyId).Receive()
+}
+
+//whc_issuanceERC721Token
+type FetureWhcIssuanceERC721TokenResult chan *response
+
+func (r FetureWhcIssuanceERC721TokenResult) Receive() (string, error){
+	res, err := receiveFuture(r)
+	if err != nil {
+		return "" , err
+	}
+
+	var result string
+	err = json.Unmarshal(res, &result)
+	if err != nil {
+		return "", err
+	}
+
+	return result, nil
+}
+
+func (c *Client) WhcIssuanceERC721TokenAsync (issueAddress, receiveAddress, propertyId, tokenId, tokenAttributes, tokenUrl string) FetureWhcIssuanceERC721TokenResult{
+	cmd := btcjson.NewWhcIssuanceERC721TokenCmd(issueAddress,receiveAddress, propertyId,tokenId, tokenAttributes, tokenUrl)
+	return c.sendCmd(cmd)
+}
+
+func (c *Client) WhcIssuanceERC721Token (issueAddress, receiveAddress, propertyId, tokenId, tokenAttributes, tokenUrl string) (string, error) {
+	return c.WhcIssuanceERC721TokenAsync(issueAddress,receiveAddress, propertyId,tokenId, tokenAttributes, tokenUrl).Receive()
+}
+
+
