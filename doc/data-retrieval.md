@@ -562,3 +562,302 @@ rpc.NewRPCInstance().WhcGetFrozenBalanceForAddress("bchtest:qqu9lh4jpc05p59pfhu9
 
 ```
 ##### 
+
+##### `whc_getERC721AddressTokens`
+
+Returns details for about the tokens or smart property to lookup.
+
+**Arguments**
+
+- address `string` required:the address of the query.
+- propertyid`string`required:the identifier of the ERC721 property
+
+**Result**
+
+- `tokenid`the identifier of the token
+- `attribute`the name of the tokens
+- `tokenurl`the url of the tokens
+- `creationtxid`the hex-encoded creation transaction hash
+
+**Examples**
+
+```go
+//request 
+rpc.NewRPCInstance().WhcGetERC721AddressTokens("qrqfsslh4l27kwgxfq959gq9tpqn6j739ydn527mlt","6")
+
+//result
+[{"tokenid": "1","attribute": "0000000000000000000000000000000000000000000000000000000000edabef", "tokenurl": "http://lll","creationtxid": "b4437159f1443793f2fc3a4a98951a945c2e6d6fcf4839e1c2d39626821b911b"}
+]
+```
+
+##### `whc_getERC721PropertyDestroyTokens`
+
+Returns details for about the destroy tokens to lookup.
+
+**Arguments**
+
+- propertyid `string`required:the identifier of the ERC721 property
+
+**Result**
+
+- `tokenid`the identifier of the token 
+- `attribute`the name of the tokens
+- `tokenurl` the url of the tokens
+- `creationtxid`the hex-encoded creation transaction hash
+
+**Examples**
+
+```go
+//request
+rpc.NewRPCInstance().WhcGetERC721PropertyDestoryTokens("9")
+//result
+[{ "tokenid": "1",
+    "attribute": "0000000000000000000000000000000000000000000000000000000000edabef",
+    "tokenurl": "http://lll",
+    "creationtxid": "d6c220d2b4ca898f92de9975a32585b285a0c71a401a56b7e6c6cd50b8cfe2c3"
+  }
+]
+```
+
+##### `whc_getERC721PropertyNews`
+
+Returns details for about the tokens or smart property to lookup
+
+**Arguments**
+
+- propertyid`string`required： the identifier of the ERC721 property
+
+**Result**
+
+- `propertyid`the identifier of the property
+- `owner`the owner address of the ERC721 Property
+- `creationtxid`the hex-encoded creation transaction hash
+- `creationblock`the hex-encoded creation block hash
+- `name`the name of the property
+- `symbol`property symbol
+- `data`remark
+- `propertyurl`the url of the property
+- `totalTokenNumber`the amount of tokens that will be issued
+- `haveIssuedNumber`the amount of tokens that have issued
+- `currentValidIssuedNumer`the amount of tokens that still available
+
+**Examples**
+
+```go
+//request
+rpc.NewRPCInstance().WhcGetERC721PropertyNews("7")
+//result
+{
+  "propertyid": "7",
+  "owner": "bchtest:qrqfsslh4l27kwgxfq959gq9tpqn6j739ydn527mlt",
+  "creationtxid": "e930f27993881bd74d89572ca8c2273538ea62dec5980190f7c191cb56f02db1",
+  "creationblock": "00000000000000e204e8ac7c0bdf2914067e75f9f7b109a87bda9762afc339c1",
+  "name": "property test",
+  "symbol": "a",
+  "data": "ttt",
+  "propertyurl": "http://test",
+  "totalTokenNumber": 88,
+  "haveIssuedNumber": 1,
+  "currentValidIssuedNumer": 1
+}
+```
+
+##### `whc_getERC721TokenNews`
+
+Returns details for about the tokens or smart property to lookup.
+
+**Arguments**
+
+- propertyid `string`required:the identifier of the ERC721 property
+- tokenid`string` required:the identifier of the ERC721 token
+
+**Result**
+
+- `propertyid`the identifier of the property
+- `tokenid`the identifier of the token 
+- `owner`the owner address of token 
+- `creationtxid`the hex-encoded creation transaction hash
+- `creationblock`the hex-encoded creation block hash
+- `attribute`the name of the tokens
+- `tokenurl`the url of the tokens
+
+**Examples**
+
+```go
+//request
+rpc.NewRPCInstance().WhcGetERC721TokenNews("7","1")
+
+//result
+{
+  "propertyid": "6",
+  "tokenid": "1",
+  "owner": "bchtest:qrqfsslh4l27kwgxfq959gq9tpqn6j739ydn527mlt",
+  "creationtxid": "7e88e4fdd9938f37fb94c7fa587287d57f800af6cf5f9cb8f15dca5edbad1f73",
+  "creationblock": "000000000001481bc37330297e0053f0051125574364aa40e72a965da13d1e3e",
+  "attribute": "000000000000000000000000000000000000000000000000000000000000000e",
+  "tokenurl": "http://lll"
+}
+```
+
+##### `whc_listERC721PropertyTokens`
+
+List all tokens information for the specified ERC721Property.
+
+**Arguments**
+
+- propertyid`string` required:the identifier of the ERC721 property
+
+**Result**
+
+- `tokenid`the identifier of the token 
+- `owner`the owner address of the token 
+
+**Examples**
+
+```go
+//request
+rpc.NewRPCInstance().WhcListERC721PropertyTokens("9")
+
+//result
+[{
+    "tokenid": "1",
+    "owner": "bchtest:qrqfsslh4l27kwgxfq959gq9tpqn6j739ydn527mlt"
+  },
+  {
+    "tokenid": "2",
+    "owner": "bchtest:qrqfsslh4l27kwgxfq959gq9tpqn6j739ydn527mlt"
+  }
+]
+
+```
+
+##### `whc_ownerOfERC721Token`
+
+Query whether the Token's owner is the specified address.
+
+**Arguments**
+
+- propertyid `string`required:the identifier of the ERC721 property
+- tokenid`string`required:the identifier of the ERC721 token
+- address`string` query address for the specified ERC721 Token 
+
+**Result**
+
+- `ownwhether the query address owner the specified ERC721 Token`
+
+**Examples**
+
+```go
+//request
+rpc.NewRPCInstance().WhcOwnerOfERC721Token("7","1","qrqfsslh4l27kwgxfq959gq9tpqn6j739ydn527mlt")
+
+//result
+{
+  "own": true
+}
+```
+
+##### 
+##### `whc_destroyERC721Token`
+
+Destroy ERC721 Token.
+
+**Arguments**
+
+- senderAddress`string`required:The bitcoincash address of the token owner
+- propertyId`string`required:The propertyid within the token that will be destory
+- tokenId`string`required:The tokenid that will be destory
+
+**Result**
+
+- `hash`the hex-encoded transaction hash
+
+**Examples**
+
+```go
+//request
+rpc.NewRPCInstance().WhcDestoryERC721Token("qrqfsslh4l27kwgxfq959gq9tpqn6j739ydn527mlt","9","1")
+
+//result
+2c82940e9f9d637fc456a4c651fef7b9dabeb3187571b562088a43aacbb9d80e
+```
+
+##### `whc_issuanceERC721Token`
+
+Issue ERC721 Token.
+
+**Arguments**
+
+- issueAddress`string`required:The BitcoinCash address will issue a token in special property
+- receiveaddress`string`required:The address of receiver will be received new created token
+- propertyID`string`required:The ID of the special property that will be issued token
+- tokenID`string`required:The tokenID that will be issued
+- tokenAttributes`string`The Attributes of the new created token
+- tokenURL`string`The URL of the new created token
+
+**Result**
+
+- `hash`the hex-encoded transaction hash
+
+**Examples**
+
+```go
+//request
+rpc.NewRPCInstance().WhcIssuanceERC721Token("qrqfsslh4l27kwgxfq959gq9tpqn6j739ydn527mlt","qrqfsslh4l27kwgxfq959gq9tpqn6j739ydn527mlt","9","1","00000000000000000000000000EDABEF","http://lll")
+
+//result
+b4437159f1443793f2fc3a4a98951a945c2e6d6fcf4839e1c2d39626821b911b
+```
+
+##### `whc_issuanceERC721property`
+
+Issue ERC721 property
+
+**Arguments**
+
+- issueAddress`string`required:The BitcoinCash address will issue ERC721 property
+- name`string`required:the name of created property 
+- symbol`string`required:the symbol of created property 
+- data`string`required:the Data of created property 
+- url`string`required:the URL of created property 
+- totalNumber`string`required: the number of token that created property will issued in the future
+
+**Result**
+
+- `hash`the hex-encoded transaction hash
+
+**Examples**
+
+```go
+//request
+rpc.NewRPCInstance().WhcIssuanceERC721Property("qrqfsslh4l27kwgxfq959gq9tpqn6j739ydn527mlt","property test4","a","ttt","http://test","8")
+
+//result
+e5efb94c13d9fbbdbe3decfeb88300d61cf259447d225b641f00251df0bc6db6
+```
+
+##### `whc_transferERC721Token`
+
+Transfer ERC721 Token.
+
+**Arguments**
+
+- ownerAddress`string`The bitcoincash address of the token owner
+- receiveaddress`string`The redeem bitcoin address of the token receiver
+- propertyId`string`The propertyid within the token that will be transfer
+- tokenId`string`The tokenid that will be transfer
+
+**Result**
+
+- `hash`the hex-encoded transaction hash
+
+**Examples**
+
+```go
+//request
+rpc.NewRPCInstance().WhcTransferERC721Token("qrqfsslh4l27kwgxfq959gq9tpqn6j739ydn527mlt","qpd485y7slsn9mnudjm6n477m4yxdx9u5yf0ff3z55","8","1")
+
+//result
+025c1382cc049e6db911969313f42ec34b338c4ed21e0d83c25e1dc066db27d5
+```
+

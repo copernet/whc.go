@@ -827,6 +827,216 @@ func NewWhcGetFrozenBalanceForAddressCmd(address string) *WhcGetFrozenBalanceFor
 	}
 }
 
+//whc_getERC721PropertyNews
+type WhcGetERC721PropertyNewsCmd struct {
+	PropertyId  string
+}
+
+func NewWhcGetERC721PropertyNewsCmd(propertyId string) *WhcGetERC721PropertyNewsCmd{
+	return &WhcGetERC721PropertyNewsCmd{
+		PropertyId:propertyId,
+	}
+}
+
+//whc_getERC721PropertyDestroyTokens
+type WhcGetERC721PropertyDestoryTokensCmd struct {
+	PropertyId  string
+}
+
+func NewWhcGetERC721PropertyDestoryTokensCmd(propertyId string) *WhcGetERC721PropertyDestoryTokensCmd{
+	return &WhcGetERC721PropertyDestoryTokensCmd{
+		PropertyId:propertyId,
+	}
+}
+
+//whc_getERC721TokenNews
+type WhcGetERC721TokenNewsCmd struct {
+	PropertyId  string
+	TokenId  	string
+}
+
+func NewWhcGetERC721TokenNewsCmd(propertyId, tokenId string) *WhcGetERC721TokenNewsCmd{
+	return &WhcGetERC721TokenNewsCmd{
+		PropertyId:propertyId,
+		TokenId:tokenId,
+	}
+}
+
+//whc_getERC721AddressTokens
+type WhcGetERC721AddressTokensCmd struct {
+	Address  string
+	PropertyId string
+}
+func NewWhcGetERC721AddressTokensCmd(address string, id string)  *WhcGetERC721AddressTokensCmd{
+	return  &WhcGetERC721AddressTokensCmd{
+		Address:address,
+		PropertyId:id,
+	}
+}
+
+//whc_ownerOfERC721Token
+type WhcOwnerOfERC721TokenCmd struct {
+	PropertyId string
+	TokenId string
+	Address string
+}
+
+func NewWhcOwnerOfERC721TokenCmd ( propertyId,tokenId string,address string,) *WhcOwnerOfERC721TokenCmd{
+	return &WhcOwnerOfERC721TokenCmd{
+		PropertyId:propertyId,
+		TokenId:tokenId,
+		Address:address,
+	}
+
+}
+
+//whc_listERC721PropertyTokens
+type WhcListERC721PropertyTokensCmd struct {
+	Propertyid string
+}
+
+func NewWhcListERC721PropertyTokensCmd (propertyId string) *WhcListERC721PropertyTokensCmd {
+	return &WhcListERC721PropertyTokensCmd{
+		Propertyid:propertyId,
+	}
+}
+
+//whc_issuanceERC721property
+type WhcIssuanceERC721PropertyCmd struct {
+	IssueAddress  string
+	Name 		  string
+	Symbol        string
+	Data		  string
+	Url			  string
+	TotalNumber   string
+}
+
+func NewWhcIssuanceERC721PropertyCmd(issueAddress, name, symbol, data, url,totalNumber string) *WhcIssuanceERC721PropertyCmd{
+	return &WhcIssuanceERC721PropertyCmd{
+		IssueAddress:issueAddress,
+		Name:name,
+		Symbol:symbol,
+		Data:data,
+		Url:url,
+		TotalNumber:totalNumber,
+	}
+}
+
+//whc_transferERC721Token
+type WhcTransferERC721TokenCmd struct {
+	OwnerAddress      string
+	ReceiveAddress    string
+	PropertyID		  string
+	TokenID 		  string
+}
+
+func NewWhcTransferERC721TokenCmd(ownerAddress, receiveAddress string, propertyId, tokenId  string) *WhcTransferERC721TokenCmd{
+	return &WhcTransferERC721TokenCmd{
+		OwnerAddress:ownerAddress,
+		ReceiveAddress:receiveAddress,
+		PropertyID:propertyId,
+		TokenID:tokenId,
+	}
+}
+
+//whc_destroyERC721Token
+type WhcDestoryERC721TokenCmd struct {
+	OwnerAddress  	string
+	PropertyID		string
+	TokenID			string
+}
+
+func NewWhcDestoryERC721TokenCmd(ownerAddress string, propertyId,tokenId string) *WhcDestoryERC721TokenCmd{
+	return &WhcDestoryERC721TokenCmd{
+		OwnerAddress:ownerAddress,
+		PropertyID:propertyId,
+		TokenID:tokenId,
+	}
+}
+
+//whc_issuanceERC721Token
+type WhcIssuanceERC721TokenCmd struct {
+	IssueAddress      string
+	ReceiveAddress    string
+	PropertyID		  string
+	TokenID			  string
+	TokenAttributes   string
+	TokenUrl		  string
+}
+func NewWhcIssuanceERC721TokenCmd (issueAddress, receiveAddress, propertyId, tokenId, tokenAttributes, tokenUrl string) *WhcIssuanceERC721TokenCmd{
+	return &WhcIssuanceERC721TokenCmd{
+		IssueAddress:issueAddress,
+		ReceiveAddress:receiveAddress,
+		PropertyID:propertyId,
+		TokenID:tokenId,
+		TokenAttributes:tokenAttributes,
+		TokenUrl:tokenUrl,
+	}
+}
+
+//whc_createpayload_issueERC721property
+type WhcCreatePayloadIssueERC721PropertyCmd struct {
+	Name 	string
+	Symbol 	string
+	Data  	string
+	Url     string
+	TotalNumber string
+}
+
+func NewWhcCreatePayloadIssueERC721PropertyCmd(name, symbol, data, url, total string) *WhcCreatePayloadIssueERC721PropertyCmd {
+	return &WhcCreatePayloadIssueERC721PropertyCmd{
+		Name: name,
+		Symbol:symbol,
+		Data:data,
+		Url: url,
+		TotalNumber:total,
+	}
+}
+
+//whc_createpayload_issueERC721token
+type WhcCreatePayloadIssueERC721TokenCmd struct{
+	PropertyId   string
+	TokenId 	 string
+	TokenAttributes  string
+	TokenUrl      string
+}
+
+func NewWhcCreatePayloadIssueERC721TokenCmd(propertyId, tokenId string, tokenAttributes, tokenUrl string) *WhcCreatePayloadIssueERC721TokenCmd{
+	return &WhcCreatePayloadIssueERC721TokenCmd{
+		PropertyId:propertyId,
+		TokenId:tokenId,
+		TokenAttributes:tokenAttributes,
+		TokenUrl:tokenUrl,
+	}
+}
+
+//whc_createpayload_transferERC721token
+type WhcCreatePayloadTransferERC721TokenCmd struct {
+	PropertyId    	string
+	TokenId			string
+}
+
+func NewWhcCreatePayloadTransferERC721TokenCmd(propertyId, tokenId string) *WhcCreatePayloadTransferERC721TokenCmd{
+	return &WhcCreatePayloadTransferERC721TokenCmd{
+		PropertyId:propertyId,
+		TokenId:tokenId,
+	}
+}
+
+//whc_createpayload_destroyERC721token
+type WhcCreatePayloadDestoryERC721TokenCmd struct {
+	PropertyId    	string
+	TokenId			string
+}
+
+func NewWhcCreatePayloadDestoryERC721TokenCmd(propertyId, tokenId string) *WhcCreatePayloadDestoryERC721TokenCmd{
+	return &WhcCreatePayloadDestoryERC721TokenCmd{
+		PropertyId:propertyId,
+		TokenId:tokenId,
+	}
+}
+
+
 func init() {
 	// No special flags for commands in this file.
 	flags := UsageFlag(0)
@@ -887,4 +1097,21 @@ func init() {
 	MustRegisterCmd("whc_getfrozenbalance", (*GetFrozenBalanceCmd)(nil), flags)
 	MustRegisterCmd("whc_getfrozenbalanceforid", (*WhcGetFrozenBalanceForIdCmd)(nil), flags)
 	MustRegisterCmd("whc_getfrozenbalanceforaddress", (*WhcGetFrozenBalanceForAddressCmd)(nil), flags)
+	MustRegisterCmd("whc_getERC721AddressTokens", (*WhcGetERC721AddressTokensCmd)(nil), flags)
+	MustRegisterCmd("whc_getERC721PropertyDestroyTokens", (*WhcGetERC721PropertyDestoryTokensCmd)(nil), flags)
+	MustRegisterCmd("whc_ownerOfERC721Token", (*WhcOwnerOfERC721TokenCmd)(nil), flags)
+	MustRegisterCmd("whc_listERC721PropertyTokens", (*WhcListERC721PropertyTokensCmd)(nil), flags)
+	MustRegisterCmd("whc_getERC721PropertyNews", (*WhcGetERC721PropertyNewsCmd)(nil), flags)
+	MustRegisterCmd("whc_getERC721TokenNews", (*WhcGetERC721TokenNewsCmd)(nil), flags)
+	MustRegisterCmd("whc_issuanceERC721property", (*WhcIssuanceERC721PropertyCmd)(nil), flags)
+	MustRegisterCmd("whc_transferERC721Token", (*WhcTransferERC721TokenCmd)(nil), flags)
+	MustRegisterCmd("whc_destroyERC721Token", (*WhcDestoryERC721TokenCmd)(nil), flags)
+	MustRegisterCmd("whc_issuanceERC721Token", (*WhcIssuanceERC721TokenCmd)(nil), flags)
+	MustRegisterCmd("whc_createpayload_issueERC721property", (*WhcCreatePayloadIssueERC721PropertyCmd)(nil), flags)
+	MustRegisterCmd("whc_createpayload_issueERC721token", (*WhcCreatePayloadIssueERC721TokenCmd)(nil), flags)
+	MustRegisterCmd("whc_createpayload_transferERC721token", (*WhcCreatePayloadTransferERC721TokenCmd)(nil), flags)
+	MustRegisterCmd("whc_createpayload_destroyERC721token", (*WhcCreatePayloadDestoryERC721TokenCmd)(nil), flags)
+
+
+
 }
